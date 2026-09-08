@@ -2,6 +2,7 @@ using EmployeeWebApplication.Mock;
 using EmployeeWebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace EmployeeWebApplication.Controllers
 {
@@ -30,9 +31,9 @@ namespace EmployeeWebApplication.Controllers
                 .ToList(); //put the results in a list 
 
 
-            EmployeeDataViewModel model = new EmployeeDataViewModel();
+            EmployeeDataViewModel model = new EmployeeDataViewModel(); 
 
-            model.Employees = EmployeeMockData.Employees;
+            model.Employees = EmployeeMockData.Employees; //not working
             model.SearchResults = searchResults;
             model.HasSearched = true;
 
@@ -40,7 +41,7 @@ namespace EmployeeWebApplication.Controllers
         }
 
 
-        // CREATE EMPLOYEE
+        //create employee
         [HttpPost]
         public IActionResult Create(Employee employee)
         {
@@ -125,7 +126,6 @@ namespace EmployeeWebApplication.Controllers
             return Content("<script>alert('Employee successfully updated!'); window.location.href='/Home/Index';</script>", "text/html");
         }
 
-
         //delete
         [HttpPost]
         public IActionResult Delete(int employeeId)
@@ -140,10 +140,6 @@ namespace EmployeeWebApplication.Controllers
 
             return RedirectToAction("Index");
         }
-
-
-        //TOMORROW COME BACK TO THIS AND UPDATE THE CSV STUFF
-        //CREATE THE GITRHUB REPO
 
         //export to csv
         public IActionResult ExportCsv() 
@@ -182,6 +178,48 @@ namespace EmployeeWebApplication.Controllers
             }
 
             return value;
+        }
+
+        //import csv
+        [HttpPost] 
+        public IActionResult ImportCsv(IFormFile file) 
+        {
+            if (file == null)
+            {
+                return Content("<script>alert('Please select a CSV file.'); window.location.href='/Home/Index';</script>", "text/html");
+            } 
+            else if (file.Length == 0)
+            {
+                return Content("<script>alert('This CSV is empty.'); window.location.href='/Home/Index';</script>", "text/html");
+            }
+
+            using (StreamReader reader = new StreamReader(file.OpenReadStream())) //referenced https: //www.geeksforgeeks.org/c-sharp/streamreader-and-streamwriter-in-c-sharp/
+            {
+                string line;
+
+                while ((line = reader.ReadLine()) != null) {
+
+                    List<string> data = new List<string>();
+
+                    string removeHeadings = line.Replace("Employee ID,First Name,Last Name,Email,Department,Date Created", ""); //not working
+
+                    data = line.Split(",").ToList();
+
+                    Employee employee = new Employee();
+
+                    employee.EmployeeId = EmployeeMockData.GetNextId();
+                    employee.FirstName = data[1];
+                    employee.LastName = data[2];
+                    employee.Email = data[3];
+                    employee.Department = data[4];
+                    //employee.DateCreated = DateTime.Parse(data[5]);  //not working
+                    employee.DateCreated = DateTime.Now;
+
+                    EmployeeMockData.Employees.Add(employee);
+                }
+            }
+
+            return Content("<script>alert('Employee Data successfully updated!'); window.location.href = '/Home/Index';</script>", "text/html");
         }
     }
 }

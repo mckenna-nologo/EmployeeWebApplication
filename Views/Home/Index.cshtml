@@ -194,8 +194,22 @@
 </div>
 
 <hr />
-<h5>Export all Data to CSV</h5>
 
-<a asp-controller="Home" asp-action="ExportCsv" class="btn btn-success">
-    Export to CSV
-</a>
+<h3>CSV Functionality</h3> <br />
+<h5>1. Export all Data to CSV</h5>
+
+<a asp-controller="Home" asp-action="ExportCsv" class="btn btn-success">Export to CSV</a>
+
+<br />
+<br />
+
+<h5>2. Import all Data from CSV</h5>
+
+<form asp-controller="Home" asp-action="ImportCsv" method="post" enctype="multipart/form-data">
+    <div class="import-csv">
+        <label for="file">Import CSV:</label>
+        <input type="file" name="file" class="form-control" accept=".csv" /> @*make sure it only accepts CSV files*@
+    </div>
+
+    <button type="submit" class="btn btn-info">Upload</button>
+</form>

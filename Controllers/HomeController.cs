@@ -196,12 +196,13 @@ namespace EmployeeWebApplication.Controllers
             using (StreamReader reader = new StreamReader(file.OpenReadStream())) //referenced https: //www.geeksforgeeks.org/c-sharp/streamreader-and-streamwriter-in-c-sharp/
             {
                 string line;
+                reader.ReadLine();
 
                 while ((line = reader.ReadLine()) != null) {
-
+                    
                     List<string> data = new List<string>();
 
-                    string removeHeadings = line.Replace("Employee ID,First Name,Last Name,Email,Department,Date Created", ""); //not working
+                    //string removeHeadings = line.Replace("Employee ID,First Name,Last Name,Email,Department,Date Created", ""); //not working
 
                     data = line.Split(",").ToList();
 
@@ -212,8 +213,8 @@ namespace EmployeeWebApplication.Controllers
                     employee.LastName = data[2];
                     employee.Email = data[3];
                     employee.Department = data[4];
-                    //employee.DateCreated = DateTime.Parse(data[5]);  //not working
-                    employee.DateCreated = DateTime.Now;
+                    employee.DateCreated = DateTime.Parse(data[5]);  //not working
+                    //employee.DateCreated = DateTime.Now;
 
                     EmployeeMockData.Employees.Add(employee);
                 }

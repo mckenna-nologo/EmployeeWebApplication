@@ -61,35 +61,13 @@
 
 <h3>Create Employee</h3>
 
-<div class="create-employees">
-    <form asp-controller="Home" asp-action="Create" method="post">
-        <label for="create-firstname">First name:</label>
-        <input class="form-control" type="text" id="create-firstname" name="FirstName">
-        <br>
-
-        <label for="create-lastname">Last name:</label>
-        <input class="form-control" type="text" id="create-lastname" name="LastName">
-        <br>
-
-        <label for="create-email">Email:</label>
-        <input class="form-control" type="email" id="create-email" name="Email">
-        <br>
-
-        <label for="create-department">Department:</label>
-        <input class="form-control" type="text" id="create-department" name="Department">
-        <br>
-
-        <button type="submit" class="btn btn-primary">
-            Create Employee
-        </button>
-    </form>
-</div>
+<p>
+    <a asp-action="CreateView" class="btn btn-danger">View Employee Database</a>
+</p>
 
 <hr />
 
 <h3>Update Employee</h3>
-
-<p class="text-muted">Use the Update page to find and edit an employee.</p>
 
 <p>
     <a asp-controller="Home" asp-action="UpdateView" class="btn btn-secondary">Go to Update Page</a>

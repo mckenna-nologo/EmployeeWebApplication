@@ -23,17 +23,17 @@ The application:
 ## CRUD Functions:
 
 ### READ
-Users are able to view all employees in a table in on the home page. Here they can see when the table has been updated/altered.
+Users are able to view all employees in a table in on the Employees page. Here they can see when the table has been updated/altered.
 
-<img width="1348" height="583" alt="image" src="https://github.com/user-attachments/assets/fbf8a716-29c6-43b8-b935-045467906907" />
+<img width="1350" height="638" alt="image" src="https://github.com/user-attachments/assets/582189fe-09bf-4c0c-a04b-3f2fdda6bfe5" />
 
 Users are also able to search employees by first name, department or both. On search, they can view individual employee details.
 
-<img width="372" height="264" alt="image" src="https://github.com/user-attachments/assets/10ae787c-2e6a-4113-9af0-1f0c739d1926" />
+<img width="1006" height="496" alt="image" src="https://github.com/user-attachments/assets/be636b2a-2b11-43a3-9d83-d0232e78e4e5" />
 
-Users are able to download a CSV file with the data.
+There is also CSV Functionality. Users are able to download a CSV file with the employee data as well as import data from a csv to the employee database.
 
-<img width="238" height="97" alt="image" src="https://github.com/user-attachments/assets/b5244e1c-7831-42f6-a5bd-503ba56082c4" />
+<img width="896" height="463" alt="image" src="https://github.com/user-attachments/assets/946c77f6-d83c-4a78-a240-a4331dee6606" />
 
 ---
 
@@ -51,13 +51,14 @@ With these fields auto-generated with every new user:
 *	Employee ID (Auto-generated)
 *	Date Created (Auto-generated)
 
-<img width="334" height="221" alt="image" src="https://github.com/user-attachments/assets/6f732f3b-050b-4ef5-8d8a-789ce61a44f2" />
+<img width="889" height="562" alt="image" src="https://github.com/user-attachments/assets/a2acf974-24b7-4b60-bb07-a4e54ed1977f" />
+
 
 Upon Success, you will get a success notification and you will be able to see the updated employee data on the table.
 
 <img width="447" height="158" alt="image" src="https://github.com/user-attachments/assets/76a301ab-8195-4788-84f0-8eafc8f17fe1" />
 
-<img width="1087" height="132" alt="image" src="https://github.com/user-attachments/assets/f61c6bb7-9f7b-4c75-bd77-f55f18ef14db" />
+<img width="1247" height="136" alt="image" src="https://github.com/user-attachments/assets/83fd35ff-818a-46e2-a6e7-a67b519b4689" />
 
 
 #### Validation Rules
@@ -71,9 +72,10 @@ If there is an invalid entry while creating a new employee, you will get an erro
 
 **_Validation Error Example 1:_**
 
-<img width="598" height="212" alt="image" src="https://github.com/user-attachments/assets/0b409b27-843e-4616-81ea-788c5005a413" />
+<img width="886" height="470" alt="image" src="https://github.com/user-attachments/assets/6ed7703d-f5e4-44ec-a625-22bf9f1abfa1" />
 
-**_Validation Error Example 1:_**
+
+**_Validation Error Example 2:_**
 
 <img width="445" height="150" alt="image" src="https://github.com/user-attachments/assets/78dc7fac-5b16-4722-ba9a-72184e03dae4" />
 
@@ -85,15 +87,18 @@ Users are able to edit employee information, and save changes to the data.
 
 1. Search through the data to find an employee.
 
-<img width="539" height="147" alt="image" src="https://github.com/user-attachments/assets/da7bef65-9211-4230-989f-3894f454c340" />
+<img width="898" height="332" alt="image" src="https://github.com/user-attachments/assets/ee23a474-0259-42bb-839b-6fe4cc1fa47d" />
+
 
 2. If the employee exists in the data, their original details will appear in the respective input fields. To update their details, change replace the original details with the new details and press "Update Employee"
 
-<img width="434" height="267" alt="image" src="https://github.com/user-attachments/assets/fc3000e6-0ca1-4b82-8e89-a52076dff923" />
+<img width="576" height="521" alt="image" src="https://github.com/user-attachments/assets/fb93cb3f-4203-4598-af7c-5f84c757338d" />
+
 
 3. Upon success, you will receive a success message. And the employee table will refresh for you to see the updated data.
 
-<img width="1074" height="85" alt="image" src="https://github.com/user-attachments/assets/064f3efd-120b-4613-a4dc-22fead6efe20" />
+<img width="1047" height="92" alt="image" src="https://github.com/user-attachments/assets/481af6f5-783d-4787-b7a8-70cdc577eaa3" />
+
 
 ---
 
@@ -101,7 +106,7 @@ Users are able to edit employee information, and save changes to the data.
 
 1. Remove an employee record by entering their employee ID.
 
-<img width="319" height="134" alt="image" src="https://github.com/user-attachments/assets/51526d13-3b55-4543-aa1f-b79702d118bf" />
+<img width="898" height="278" alt="image" src="https://github.com/user-attachments/assets/30dcc337-83ad-4395-8a4e-b4df29e72569" />
 
 2. You will receive a confirmation prompt before deletion.
 
@@ -109,4 +114,4 @@ Users are able to edit employee information, and save changes to the data.
 
 3. You will be able to see the updated employee data on the table.
 
-<img width="1115" height="116" alt="image" src="https://github.com/user-attachments/assets/8743ba22-b4a5-414b-ae16-2a0e455f62fb" />
+<img width="1095" height="134" alt="image" src="https://github.com/user-attachments/assets/22daa059-ef74-4450-86f2-9d47ee475669" />

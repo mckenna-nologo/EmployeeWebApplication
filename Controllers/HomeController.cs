@@ -47,6 +47,7 @@ namespace EmployeeWebApplication.Controllers
             model.SearchResults = searchResults;
             model.HasSearched = true;
 
+            // return Index view with search results
             return View("Index", model);
         }
 
@@ -102,24 +103,41 @@ namespace EmployeeWebApplication.Controllers
                 EmployeeMockData.Employees
                 .FirstOrDefault(employee => employee.EmployeeId == employeeId);
 
+            EmployeeDataViewModel model = new EmployeeDataViewModel();
+            model.Employees = EmployeeMockData.Employees;
+
             if (selectedEmployee != null)
             {
-                EmployeeDataViewModel model = new EmployeeDataViewModel();
-
-                model.Employees = EmployeeMockData.Employees;
                 model.SelectedEmployee = selectedEmployee;
-
-                return View("Index", model);
+                return View("UpdateView", model);
             }
 
-            return Content("<script>alert('Employee with ID " + employeeId + " was not found.'); window.location.href='/Home/Index';</script>", "text/html");
+            // not found: stay on UpdateView and show an error message
+            model.ErrorMessage = "Employee with ID " + employeeId + " was not found.";
+            return View("UpdateView", model);
         }
 
+        public IActionResult UpdateView()
+        {
+            // Ensure the UpdateView always receives a non-null model to avoid null reference in the Razor page
+            EmployeeDataViewModel model = new EmployeeDataViewModel();
+            model.Employees = EmployeeMockData.Employees;
+
+            return View(model);
+        }
 
         //update the
         [HttpPost]
-        public IActionResult Update(Employee employee)
+        public IActionResult Update(EmployeeDataViewModel model)
         {
+            // Expect the updated employee in model.SelectedEmployee
+            var employee = model?.SelectedEmployee;
+
+            if (employee == null)
+            {
+                return Content("<script>alert('No employee data submitted.'); window.location.href='/Home/Index';</script>", "text/html");
+            }
+
             if (string.IsNullOrWhiteSpace(employee.FirstName) ||
                 string.IsNullOrWhiteSpace(employee.LastName) ||
                 string.IsNullOrWhiteSpace(employee.Email) ||

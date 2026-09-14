@@ -17,11 +17,11 @@
 <form asp-controller="Home" asp-action="Search" method="post">
 
     <label for="search-name">First Name:</label>
-    <input type="text" id="search-name" name="name">
+    <input class="form-control" type="text" id="search-name" name="name">
     <br>
 
     <label for="search-department">Department:</label>
-    <input type="text" id="search-department" name="department">
+    <input class="form-control" type="text" id="search-department" name="department">
     <br>
 
     <button type="submit" class="btn btn-primary">
@@ -64,19 +64,19 @@
 <div class="create-employees">
     <form asp-controller="Home" asp-action="Create" method="post">
         <label for="create-firstname">First name:</label>
-        <input type="text" id="create-firstname" name="FirstName">
+        <input class="form-control" type="text" id="create-firstname" name="FirstName">
         <br>
 
         <label for="create-lastname">Last name:</label>
-        <input type="text" id="create-lastname" name="LastName">
+        <input class="form-control" type="text" id="create-lastname" name="LastName">
         <br>
 
         <label for="create-email">Email:</label>
-        <input type="email" id="create-email" name="Email">
+        <input class="form-control" type="email" id="create-email" name="Email">
         <br>
 
         <label for="create-department">Department:</label>
-        <input type="text" id="create-department" name="Department">
+        <input class="form-control" type="text" id="create-department" name="Department">
         <br>
 
         <button type="submit" class="btn btn-primary">
@@ -89,67 +89,11 @@
 
 <h3>Update Employee</h3>
 
-<p class="text-muted">Enter the ID of the employee you want to change.</p>
+<p class="text-muted">Use the Update page to find and edit an employee.</p>
 
-<div class="update-employees">
-    <form asp-controller="Home" asp-action="FindEmployee" method="post">
-        <label for="update-id">Employee ID:</label>
-        <input type="number" id="update-id" name="employeeId">
-
-        <button type="submit" class="btn btn-secondary">
-            Find Employee
-        </button>
-    </form>
-
-
-
-    @if (Model.SelectedEmployee != null)
-    {
-        <hr />
-        <p>This is the current employee we're updating:</p>
-        <p><strong> @Model.SelectedEmployee.EmployeeId - @Model.SelectedEmployee.FirstName @Model.SelectedEmployee.LastName | @Model.SelectedEmployee.Email | @Model.SelectedEmployee.Department</strong></p>
-
-        <p class="text-muted">Fill in the updated details below.</p>
-
-        <form asp-controller="Home" asp-action="Update" method="post">
-            <input type="hidden"
-                   name="EmployeeId"
-                   value="@Model.SelectedEmployee.EmployeeId">
-
-            <label for="update-firstname">First name:</label>
-            <input type="text"
-                   id="update-firstname"
-                   name="FirstName"
-                   value="@Model.SelectedEmployee.FirstName">
-            <br>
-
-            <label for="update-lastname">Last name:</label>
-            <input type="text"
-                   id="update-lastname"
-                   name="LastName"
-                   value="@Model.SelectedEmployee.LastName">
-            <br>
-
-            <label for="update-email">Email:</label>
-            <input type="email"
-                   id="update-email"
-                   name="Email"
-                   value="@Model.SelectedEmployee.Email">
-            <br>
-
-            <label for="update-department">Department:</label>
-            <input type="text"
-                   id="update-department"
-                   name="Department"
-                   value="@Model.SelectedEmployee.Department">
-            <br>
-
-            <button type="submit" class="btn btn-primary">
-                Update Employee
-            </button>
-        </form>
-    }
-</div>
+<p>
+    <a asp-controller="Home" asp-action="UpdateView" class="btn btn-secondary">Go to Update Page</a>
+</p>
 
 
 <hr />

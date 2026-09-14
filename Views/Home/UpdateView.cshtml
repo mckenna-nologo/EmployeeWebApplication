@@ -1,0 +1,61 @@
+﻿
+@model EmployeeWebApplication.Models.EmployeeDataViewModel
+
+@{
+    ViewData["Title"] = "Update Employee";
+}
+
+<h3>Update Employee</h3>
+
+<p class="text-muted">Enter the ID of the employee you want to change.</p>
+
+<div class="update-employees">
+    <form asp-controller="Home" asp-action="FindEmployee" method="post">
+        <label for="update-id">Employee ID:</label>
+        <input class="form-control" type="number" id="update-id" name="employeeId">
+
+        <button type="submit" class="btn btn-secondary">
+            Find Employee
+        </button>
+    </form>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="text-danger">@Model.ErrorMessage</div>
+    }
+
+
+
+    @if (Model?.SelectedEmployee != null)
+    {
+        <hr />
+        <p>This is the current employee we're updating:</p>
+        <p><strong> @Model.SelectedEmployee.EmployeeId - @Model.SelectedEmployee.FirstName @Model.SelectedEmployee.LastName | @Model.SelectedEmployee.Email | @Model.SelectedEmployee.Department</strong></p>
+
+        <p class="text-muted">Fill in the updated details below.</p>
+
+        <form asp-controller="Home" asp-action="Update" method="post">
+            <input asp-for="SelectedEmployee.EmployeeId" type="hidden" />
+
+            <label asp-for="SelectedEmployee.FirstName">First name:</label>
+            <input asp-for="SelectedEmployee.FirstName" class="form-control" />
+            <br />
+
+            <label asp-for="SelectedEmployee.LastName">Last name:</label>
+            <input asp-for="SelectedEmployee.LastName" class="form-control" />
+            <br />
+
+            <label asp-for="SelectedEmployee.Email">Email:</label>
+            <input asp-for="SelectedEmployee.Email" class="form-control" />
+            <br />
+
+            <label asp-for="SelectedEmployee.Department">Department:</label>
+            <input asp-for="SelectedEmployee.Department" class="form-control" />
+            <br />
+
+            <button type="submit" class="btn btn-primary">
+                Update Employee
+            </button>
+        </form>
+    }
+</div>

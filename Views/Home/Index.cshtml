@@ -1,52 +1,21 @@
 ﻿@model EmployeeWebApplication.Models.EmployeeDataViewModel
 
 @{
-    ViewData["Title"] = "Employees";
+    ViewData["Title"] = "Home";
 }
 
-<h1>Employees</h1>
+<h4>Welcome to your new favorite employee managment system!</h4>
 
-<p>
-    <a asp-action="Employees" class="btn btn-primary">View Employee Database</a>
-</p>
+<p>Navigate to your choice of functionality</p>
 
-<hr />
+<p><a asp-action="Employees" class="btn btn-primary">View Employee Database</a></p>
 
-<h3>Search Employees</h3>
+<p><a asp-controller="Home" asp-action="SearchView" class="btn btn-primary">Search</a></p>
 
-<p>
-    <a asp-controller="Home" asp-action="SearchView" class="btn btn-primary">Open Search Page</a>
-</p>
+<p><a asp-action="CreateView" class="btn btn-primary">Create</a></p>
 
+<p><a asp-controller="Home" asp-action="UpdateView" class="btn btn-primary">Update</a></p>
 
-<hr />
+<p><a asp-controller="Home" asp-action="DeleteView" class="btn btn-primary">Delete</a></p>
 
-<h3>Create Employee</h3>
-
-<p>
-    <a asp-action="CreateView" class="btn btn-danger">View Employee Database</a>
-</p>
-
-<hr />
-
-<h3>Update Employee</h3>
-
-<p>
-    <a asp-controller="Home" asp-action="UpdateView" class="btn btn-secondary">Go to Update Page</a>
-</p>
-
-
-<hr />
-<h3>Delete Employee</h3>
-
-<p>
-    <a asp-controller="Home" asp-action="DeleteView" class="btn btn-primary">Go to Delete Page</a>
-</p>
-
-<hr />
-
-<h3>CSV Functionality</h3> <br />
-
-<p>
-    <a asp-controller="Home" asp-action="CsvView" class="btn btn-outline-info">Go to CSV Page</a>
-</p>
+<p><a asp-controller="Home" asp-action="CsvView" class="btn btn-primary">CSV Functionality</a></p>

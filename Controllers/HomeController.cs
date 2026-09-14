@@ -51,6 +51,11 @@ namespace EmployeeWebApplication.Controllers
         }
 
 
+        public IActionResult CreateView()
+        {
+            return View();
+        }
+
         //create employee
         [HttpPost]
         public IActionResult Create(Employee employee)
@@ -78,7 +83,10 @@ namespace EmployeeWebApplication.Controllers
             EmployeeMockData.Employees.Add(employee);
 
             return Content("<script>alert('Employee successfully created!'); window.location.href='/Home/Index';</script>", "text/html");
+            
         }
+
+
 
 
         //find the employee before you update

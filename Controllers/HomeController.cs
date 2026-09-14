@@ -15,7 +15,52 @@ namespace EmployeeWebApplication.Controllers
 
             model.Employees = EmployeeMockData.Employees;
 
+            //return View();
             return View(model);
+        }
+
+        public IActionResult Employees()
+        {
+            EmployeeDataViewModel model = new EmployeeDataViewModel();
+            model.Employees = EmployeeMockData.Employees;
+
+            return View(model);
+            //return View();
+        }
+
+        // GET: show create form
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // GET: show update form for a specific employee
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            Employee employee = EmployeeMockData.Employees.FirstOrDefault(e => e.EmployeeId == id);
+
+            if (employee == null)
+            {
+                return Content("<script>alert('Employee not found.'); window.location.href='/Home/Employees';</script>", "text/html");
+            }
+
+            return View(employee);
+        }
+
+        // GET: show delete confirmation for a specific employee
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            Employee employee = EmployeeMockData.Employees.FirstOrDefault(e => e.EmployeeId == id);
+
+            if (employee == null)
+            {
+                return Content("<script>alert('Employee not found.'); window.location.href='/Home/Employees';</script>", "text/html");
+            }
+
+            return View(employee);
         }
 
 
@@ -37,7 +82,7 @@ namespace EmployeeWebApplication.Controllers
             model.SearchResults = searchResults;
             model.HasSearched = true;
 
-            return View("Index", model);
+            return View("Employees", model);
         }
 
 
@@ -67,7 +112,7 @@ namespace EmployeeWebApplication.Controllers
 
             EmployeeMockData.Employees.Add(employee);
 
-            return Content("<script>alert('Employee successfully created!'); window.location.href='/Home/Index';</script>", "text/html");
+            return Content("<script>alert('Employee successfully created!'); window.location.href='/Home/Employees';</script>", "text/html");
         }
 
 
@@ -123,7 +168,7 @@ namespace EmployeeWebApplication.Controllers
             existingEmployee.Email = employee.Email;
             existingEmployee.Department = employee.Department;
 
-            return Content("<script>alert('Employee successfully updated!'); window.location.href='/Home/Index';</script>", "text/html");
+            return Content("<script>alert('Employee successfully updated!'); window.location.href='/Home/Employees';</script>", "text/html");
         }
 
         //delete
@@ -138,7 +183,7 @@ namespace EmployeeWebApplication.Controllers
                 EmployeeMockData.Employees.Remove(employee);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Employees");
         }
 
         //export to csv

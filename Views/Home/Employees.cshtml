@@ -1,0 +1,38 @@
+﻿@model EmployeeWebApplication.Models.EmployeeDataViewModel
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<h1>Employee Database</h1>
+
+<div class="table-responsive">
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Date created</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var employee in Model.Employees)
+            {
+                <tr>
+                    <td>@employee.EmployeeId</td>
+                    <td>@employee.FirstName @employee.LastName</td>
+                    <td>@employee.Email</td>
+                    <td>@employee.Department</td>
+                    <td>@employee.DateCreated.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Employee</a>
+</p>
+

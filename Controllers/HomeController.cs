@@ -29,6 +29,16 @@ namespace EmployeeWebApplication.Controllers
         }
 
 
+        public IActionResult SearchView()
+        {
+            // Ensure the SearchView always receives a non-null model to avoid null reference in the Razor page
+            EmployeeDataViewModel model = new EmployeeDataViewModel();
+            model.Employees = EmployeeMockData.Employees;
+            model.HasSearched = false;
+
+            return View(model);
+        }
+
         //search through employee data
         [HttpPost]
         public IActionResult Search(string name, string department)
@@ -47,8 +57,8 @@ namespace EmployeeWebApplication.Controllers
             model.SearchResults = searchResults;
             model.HasSearched = true;
 
-            // return Index view with search results
-            return View("Index", model);
+            // return SearchView with search results
+            return View("SearchView", model);
         }
 
 
@@ -183,6 +193,11 @@ namespace EmployeeWebApplication.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        public IActionResult CsvView()
+        {
+            return View();
         }
 
         //export to csv

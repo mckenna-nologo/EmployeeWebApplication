@@ -1,0 +1,50 @@
+﻿@model EmployeeWebApplication.Models.EmployeeDataViewModel
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+
+<h3>Search Employees</h3>
+
+<form asp-controller="Home" asp-action="Search" method="post">
+
+    <label for="search-name">First Name:</label>
+    <input class="form-control" type="text" id="search-name" name="name">
+    <br>
+
+    <label for="search-department">Department:</label>
+    <input class="form-control" type="text" id="search-department" name="department">
+    <br>
+
+    <button type="submit" class="btn btn-primary">
+        Search
+    </button>
+
+    <a asp-controller="Home" asp-action="SearchView" class="btn btn-secondary">
+        Clear
+    </a>
+
+</form>
+
+@if (Model.HasSearched)
+{
+    if (Model.SearchResults.Count == 0)
+    {
+        <p class="text-danger">No employees were found.</p>
+    }
+    else
+    {
+        <p>Search results:</p>
+
+        foreach (var employee in Model.SearchResults)
+        {
+            <p>
+                @employee.EmployeeId -
+                @employee.FirstName @employee.LastName -
+                @employee.Email -
+                @employee.Department
+            </p>
+        }
+    }
+}

@@ -43,7 +43,7 @@ namespace EmployeeWebApplication.Controllers
             return View("UpdateView", model);
         }
 
-        //update the
+        //update 
         [HttpPost]
         public IActionResult Update(EmployeeDataViewModel model)
         {

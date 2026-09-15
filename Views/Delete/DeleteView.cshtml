@@ -10,7 +10,6 @@
 
 <div class="delete-employees">
     <form asp-controller="Delete" asp-action="FindEmployee" method="post">
-        @Html.AntiForgeryToken()
         <label for="delete-id">Employee ID:</label>
         <input class="form-control" type="number" id="delete-id" name="employeeId" required />
         <br />
@@ -31,7 +30,6 @@
         <p><strong> @Model.SelectedEmployee.EmployeeId - @Model.SelectedEmployee.FirstName @Model.SelectedEmployee.LastName | @Model.SelectedEmployee.Email | @Model.SelectedEmployee.Department</strong></p>
 
         <form asp-controller="Delete" asp-action="Delete" method="post">
-            @Html.AntiForgeryToken()
             <input type="hidden" name="employeeId" value="@Model.SelectedEmployee.EmployeeId" />
             <button type="submit" class="btn btn-danger">
                 Delete Employee

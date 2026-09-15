@@ -8,7 +8,6 @@ namespace EmployeeWebApplication.Controllers
     {
         public IActionResult SearchView()
         {
-            // Ensure the SearchView always receives a non-null model to avoid null reference in the Razor page
             EmployeeDataViewModel model = new EmployeeDataViewModel();
             model.Employees = EmployeeMockData.Employees;
             model.HasSearched = false;

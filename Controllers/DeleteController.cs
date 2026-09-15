@@ -26,7 +26,9 @@ namespace EmployeeWebApplication.Controllers
                 EmployeeMockData.Employees.Remove(employee);
             }
 
-            return RedirectToAction("Index");
+            // After deletion, redirect back to the Home Index (not the Delete controller's Index
+            // which doesn't exist). This avoids the 404 at /Delete.
+            return RedirectToAction("Index", "Home");
         }
     }
 }

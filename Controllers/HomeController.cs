@@ -29,109 +29,36 @@ namespace EmployeeWebApplication.Controllers
         }
 
 
-        public IActionResult SearchView()
-        {
-            // Ensure the SearchView always receives a non-null model to avoid null reference in the Razor page
-            EmployeeDataViewModel model = new EmployeeDataViewModel();
-            model.Employees = EmployeeMockData.Employees;
-            model.HasSearched = false;
-
-            return View(model);
-        }
-
-        //search through employee data
-        [HttpPost]
-        public IActionResult Search(string name, string department)
-        {
-            List<Employee> searchResults = EmployeeMockData.Employees
-                .Where(employee => //where a particular employee
-                (string.IsNullOrEmpty(name) || employee.FirstName.Contains(name, StringComparison.OrdinalIgnoreCase)) &&  //the name is either null and the department is entered
-                (string.IsNullOrEmpty(department) || employee.Department.Contains(department, StringComparison.OrdinalIgnoreCase)) //or the department is null and the name is entered
-                )
-                .ToList(); //put the results in a list 
-
-
-            EmployeeDataViewModel model = new EmployeeDataViewModel(); 
-
-            model.Employees = EmployeeMockData.Employees; //not working
-            model.SearchResults = searchResults;
-            model.HasSearched = true;
-
-            // return SearchView with search results
-            return View("SearchView", model);
-        }
-
-
-        ////find the employee before you update
-        //[HttpPost]
-        //public IActionResult FindEmployee(int employeeId)
+        //public IActionResult SearchView()
         //{
-        //    //in order to fix the error message "Converting null literal or possible null value to non-nullable type.",
-        //    //I can add ? to Employee to allow it to be null...but I don';t want it to be null
-
-        //    //circle back to nullify if needed
-
-        //    Employee selectedEmployee =
-        //        EmployeeMockData.Employees
-        //        .FirstOrDefault(employee => employee.EmployeeId == employeeId);
-
+        //    // Ensure the SearchView always receives a non-null model to avoid null reference in the Razor page
         //    EmployeeDataViewModel model = new EmployeeDataViewModel();
         //    model.Employees = EmployeeMockData.Employees;
-
-        //    if (selectedEmployee != null)
-        //    {
-        //        model.SelectedEmployee = selectedEmployee;
-        //        return View("UpdateView", model);
-        //    }
-
-        //    // not found: stay on UpdateView and show an error message
-        //    model.ErrorMessage = "Employee with ID " + employeeId + " was not found.";
-        //    return View("UpdateView", model);
-        //}
-
-        //public IActionResult UpdateView()
-        //{
-        //    // Ensure the UpdateView always receives a non-null model to avoid null reference in the Razor page
-        //    EmployeeDataViewModel model = new EmployeeDataViewModel();
-        //    model.Employees = EmployeeMockData.Employees;
+        //    model.HasSearched = false;
 
         //    return View(model);
         //}
 
-        ////update the
+        ////search through employee data
         //[HttpPost]
-        //public IActionResult Update(EmployeeDataViewModel model)
+        //public IActionResult Search(string name, string department)
         //{
-        //    // Expect the updated employee in model.SelectedEmployee
-        //    var employee = model?.SelectedEmployee;
+        //    List<Employee> searchResults = EmployeeMockData.Employees
+        //        .Where(employee => //where a particular employee
+        //        (string.IsNullOrEmpty(name) || employee.FirstName.Contains(name, StringComparison.OrdinalIgnoreCase)) &&  //the name is either null and the department is entered
+        //        (string.IsNullOrEmpty(department) || employee.Department.Contains(department, StringComparison.OrdinalIgnoreCase)) //or the department is null and the name is entered
+        //        )
+        //        .ToList(); //put the results in a list 
 
-        //    if (employee == null)
-        //    {
-        //        return Content("<script>alert('No employee data submitted.'); window.location.href='/Home/Index';</script>", "text/html");
-        //    }
 
-        //    if (string.IsNullOrWhiteSpace(employee.FirstName) ||
-        //        string.IsNullOrWhiteSpace(employee.LastName) ||
-        //        string.IsNullOrWhiteSpace(employee.Email) ||
-        //        string.IsNullOrWhiteSpace(employee.Department))
-        //    {
-        //        return Content("<script>alert('All fields are required.'); window.location.href='/Home/Index';</script>", "text/html");
-        //    }
+        //    EmployeeDataViewModel model = new EmployeeDataViewModel(); 
 
-        //    Employee existingEmployee = EmployeeMockData.Employees
-        //        .FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
+        //    model.Employees = EmployeeMockData.Employees; //not working
+        //    model.SearchResults = searchResults;
+        //    model.HasSearched = true;
 
-        //    if (existingEmployee == null)
-        //    {
-        //        return Content("<script>alert('Employee with ID " + employee.EmployeeId + " was not found.'); window.location.href='/Home/Index';</script>", "text/html");
-        //    }
-
-        //    existingEmployee.FirstName = employee.FirstName;
-        //    existingEmployee.LastName = employee.LastName;
-        //    existingEmployee.Email = employee.Email;
-        //    existingEmployee.Department = employee.Department;
-
-        //    return Content("<script>alert('Employee successfully updated!'); window.location.href='/Home/Index';</script>", "text/html");
+        //    // return SearchView with search results
+        //    return View("SearchView", model);
         //}
 
         public IActionResult DeleteView()

@@ -22,6 +22,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 //set defailt route - https: //stackoverflow.com/questions/76578679/unable-to-specify-route-in-asp-net-mvc
+//git testing
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

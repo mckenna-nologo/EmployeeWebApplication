@@ -4,13 +4,21 @@
     ViewData["Title"] = "Home";
 }
 
-<h4>Welcome to your new favorite employee managment system!</h4>
 
-<p>Navigate to your choice of functionality</p>
+<div class="home-page" align="center">
+   <h1>LEDGER</h1>
+    
+    <p>Welcome to your new favorite employee managment system!</p>
 
-<p><a asp-action="Employees" class="btn btn-primary">View Employee Database</a></p>
+        <p><a asp-action="Employees" class="btn btn-primary">View Employee Database</a></p>
+        <p><a asp-controller="Create" asp-action="CreateView" class="btn btn-primary">Create</a></p>
+</div>
 
-<p><a asp-controller="Home" asp-action="SearchView" class="btn btn-primary">Search</a></p>
+
+
+
+
+@* <p><a asp-controller="Home" asp-action="SearchView" class="btn btn-primary">Search</a></p>
 
 <p><a asp-action="CreateView" class="btn btn-primary">Create</a></p>
 
@@ -18,4 +26,4 @@
 
 <p><a asp-controller="Home" asp-action="DeleteView" class="btn btn-primary">Delete</a></p>
 
-<p><a asp-controller="Home" asp-action="CsvView" class="btn btn-primary">CSV Functionality</a></p>
+<p><a asp-controller="Home" asp-action="CsvView" class="btn btn-primary">CSV Functionality</a></p> *@

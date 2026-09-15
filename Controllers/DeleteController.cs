@@ -46,13 +46,14 @@ namespace EmployeeWebApplication.Controllers
 
             if (employee == null)
             {
-                TempData["DeleteError"] = $"Employee with ID {employeeId} was not found.";
+                TempData["ErrorMessage"] = $"Employee with ID {employeeId} was not found.";
                 return RedirectToAction("DeleteView");
             }
 
             EmployeeMockData.Employees.Remove(employee);
 
-            return Content("<script>alert('Employee successfully deleted!'); window.location.href='/Home/Index';</script>", "text/html");
+            TempData["SuccessMessage"] = "Employee successfully deleted!";
+            return RedirectToAction("Employees", "Home");
             
         }
     }

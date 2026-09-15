@@ -57,11 +57,13 @@ namespace EmployeeWebApplication.Controllers
         {
             if (file == null)
             {
-                return Content("<script>alert('Please select a CSV file.'); window.location.href='/Home/Index';</script>", "text/html");
+                TempData["ErrorMessage"] = "Please select a CSV file.";
+                return RedirectToAction("Index", "Home");
             }
             else if (file.Length == 0)
             {
-                return Content("<script>alert('This CSV is empty.'); window.location.href='/Home/Index';</script>", "text/html");
+                TempData["ErrorMessage"] = "This CSV is empty.";
+                return RedirectToAction("Index", "Home");
             }
 
             using (StreamReader reader = new StreamReader(file.OpenReadStream())) //referenced https: //www.geeksforgeeks.org/c-sharp/streamreader-and-streamwriter-in-c-sharp/
@@ -92,7 +94,8 @@ namespace EmployeeWebApplication.Controllers
                 }
             }
 
-            return Content("<script>alert('Employee Data successfully updated!'); window.location.href = '/Home/Index';</script>", "text/html");
+            TempData["SuccessMessage"] = "Employee data successfully imported!";
+            return RedirectToAction("Employees", "Home");
         }
     }
 }

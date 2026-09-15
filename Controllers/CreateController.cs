@@ -27,8 +27,8 @@ namespace EmployeeWebApplication.Controllers
             {
                 if (string.IsNullOrWhiteSpace(field.Value))
                 {
-                    return Content("<script>alert('" + field.Key + " is required.'); window.location.href='/Home/Index';</script>", "text/html");
-                    //referenced from: https: //www.w3schools.com/js/js_window_location.asp
+                    TempData["ErrorMessage"] = field.Key + " is required.";
+                    return RedirectToAction("Index", "Home");
                 }
             }
 
@@ -37,7 +37,8 @@ namespace EmployeeWebApplication.Controllers
 
             EmployeeMockData.Employees.Add(employee);
 
-            return Content("<script>alert('Employee successfully created!'); window.location.href='/Home/Index';</script>", "text/html");
+            TempData["SuccessMessage"] = "Employee successfully created!";
+            return RedirectToAction("Employees", "Home");
 
         }
     }

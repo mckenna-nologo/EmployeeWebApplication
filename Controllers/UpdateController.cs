@@ -51,7 +51,8 @@ namespace EmployeeWebApplication.Controllers
 
             if (employee == null)
             {
-                return Content("<script>alert('No employee data submitted.'); window.location.href='/Home/Index';</script>", "text/html");
+                TempData["ErrorMessage"] = "No employee data submitted.";
+                //return RedirectToAction("Employees", "Home");
             }
 
             if (string.IsNullOrWhiteSpace(employee.FirstName) ||
@@ -59,7 +60,8 @@ namespace EmployeeWebApplication.Controllers
                 string.IsNullOrWhiteSpace(employee.Email) ||
                 string.IsNullOrWhiteSpace(employee.Department))
             {
-                return Content("<script>alert('All fields are required.'); window.location.href='/Home/Index';</script>", "text/html");
+                TempData["ErrorMessage"] = "All fields are required.";
+                //return RedirectToAction("Employees", "Home");
             }
 
             Employee existingEmployee = EmployeeMockData.Employees
@@ -67,7 +69,8 @@ namespace EmployeeWebApplication.Controllers
 
             if (existingEmployee == null)
             {
-                return Content("<script>alert('Employee with ID " + employee.EmployeeId + " was not found.'); window.location.href='/Home/Index';</script>", "text/html");
+                TempData["ErrorMessage"] = $"Employee with ID {employee.EmployeeId} was not found.";
+                //return RedirectToAction("Employees", "Home");
             }
 
             existingEmployee.FirstName = employee.FirstName;
@@ -75,7 +78,8 @@ namespace EmployeeWebApplication.Controllers
             existingEmployee.Email = employee.Email;
             existingEmployee.Department = employee.Department;
 
-            return Content("<script>alert('Employee successfully updated!'); window.location.href='/Home/Index';</script>", "text/html");
+            TempData["SuccessMessage"] = "Employee successfully updated!";
+            return RedirectToAction("Employees", "Home");
         }
     }
 }

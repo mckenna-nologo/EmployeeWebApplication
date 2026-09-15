@@ -38,7 +38,6 @@ namespace EmployeeWebApplication.Controllers
                 return View("UpdateView", model);
             }
 
-            // not found: stay on UpdateView and show an error message
             model.ErrorMessage = "Employee with ID " + employeeId + " was not found.";
             return View("UpdateView", model);
         }

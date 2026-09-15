@@ -15,8 +15,9 @@ namespace EmployeeWebApplication.Controllers
         }
 
 
-        //find the employee before you update
+        // find the employee before you delete
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult FindEmployee(int employeeId)
         {
             Employee selectedEmployee =
@@ -36,47 +37,23 @@ namespace EmployeeWebApplication.Controllers
             return View("DeleteView", model);
         }
 
-
-        //delete
+        // delete
         [HttpPost]
-        public IActionResult Delete(EmployeeDataViewModel model)
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int employeeId)
         {
-            var employee = model?.SelectedEmployee;
+            var employee = EmployeeMockData.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
 
             if (employee == null)
             {
-                return Content("<script>alert('No employee data submitted.'); window.location.href='/Home/Index';</script>", "text/html");
+                TempData["DeleteError"] = $"Employee with ID {employeeId} was not found.";
+                return RedirectToAction("DeleteView");
             }
 
-            if (string.IsNullOrWhiteSpace(employee.FirstName) ||
-                string.IsNullOrWhiteSpace(employee.LastName) ||
-                string.IsNullOrWhiteSpace(employee.Email) ||
-                string.IsNullOrWhiteSpace(employee.Department))
-            {
-                return Content("<script>alert('All fields are required.'); window.location.href='/Home/Index';</script>", "text/html");
-            }
+            EmployeeMockData.Employees.Remove(employee);
 
-            Employee existingEmployee = EmployeeMockData.Employees
-                .FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
-
-            if (employee != null)
-            {
-                EmployeeMockData.Employees.Remove(employee);
-            }
-
-            if (existingEmployee == null)
-            {
-                return Content("<script>alert('Employee with ID " + employee.EmployeeId + " was not found.'); window.location.href='/Home/Index';</script>", "text/html");
-            }
-
-            existingEmployee.FirstName = employee.FirstName;
-            existingEmployee.LastName = employee.LastName;
-            existingEmployee.Email = employee.Email;
-            existingEmployee.Department = employee.Department;
-
-            // After deletion, redirect back to the Home Index (not the Delete controller's Index
-            // which doesn't exist). This avoids the 404 at /Delete.
-            return RedirectToAction("Index", "Home");
+            return Content("<script>alert('Employee successfully deleted!'); window.location.href='/Home/Index';</script>", "text/html");
+            
         }
     }
 }

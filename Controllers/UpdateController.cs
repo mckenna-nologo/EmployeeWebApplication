@@ -46,13 +46,12 @@ namespace EmployeeWebApplication.Controllers
         [HttpPost]
         public IActionResult Update(EmployeeDataViewModel model)
         {
-            // Expect the updated employee in model.SelectedEmployee
+            //the updated employee should be in model.SelectedEmployee
             var employee = model?.SelectedEmployee;
 
             if (employee == null)
             {
                 TempData["ErrorMessage"] = "No employee data submitted.";
-                //return RedirectToAction("Employees", "Home");
             }
 
             if (string.IsNullOrWhiteSpace(employee.FirstName) ||
@@ -61,7 +60,6 @@ namespace EmployeeWebApplication.Controllers
                 string.IsNullOrWhiteSpace(employee.Department))
             {
                 TempData["ErrorMessage"] = "All fields are required.";
-                //return RedirectToAction("Employees", "Home");
             }
 
             Employee existingEmployee = EmployeeMockData.Employees
@@ -70,7 +68,6 @@ namespace EmployeeWebApplication.Controllers
             if (existingEmployee == null)
             {
                 TempData["ErrorMessage"] = $"Employee with ID {employee.EmployeeId} was not found.";
-                //return RedirectToAction("Employees", "Home");
             }
 
             existingEmployee.FirstName = employee.FirstName;

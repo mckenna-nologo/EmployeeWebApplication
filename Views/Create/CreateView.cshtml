@@ -1,0 +1,31 @@
+@model EmployeeWebApplication.Models.EmployeeDataViewModel
+@{
+    ViewData["Title"] = "Create Employee";
+}
+
+<h3>Create Employee</h3>
+
+<div class="create-employees">
+    <form asp-controller="Create" asp-action="Create" method="post">
+
+        <label for="create-firstname">First name:</label>
+        <input class="form-control" type="text" id="create-firstname" name="FirstName" required>
+        <br>
+
+        <label for="create-lastname">Last name:</label>
+        <input class="form-control" type="text" id="create-lastname" name="LastName" required>
+        <br>
+
+        <label for="create-email">Email:</label>
+        <input class="form-control" type="email" id="create-email" name="Email" required>
+        <br>
+
+        <label for="create-department">Department:</label>
+        <input class="form-control" type="text" id="create-department" name="Department" required>
+        <br>
+
+        <button type="submit" class="btn btn-primary">
+            Create Employee
+        </button>
+    </form>
+</div>

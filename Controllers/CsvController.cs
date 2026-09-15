@@ -58,12 +58,12 @@ namespace EmployeeWebApplication.Controllers
             if (file == null)
             {
                 TempData["ErrorMessage"] = "Please select a CSV file.";
-                return RedirectToAction("Index", "Home");
+                //return RedirectToAction("Index", "Home");
             }
             else if (file.Length == 0)
             {
                 TempData["ErrorMessage"] = "This CSV is empty.";
-                return RedirectToAction("Index", "Home");
+                //return RedirectToAction("Index", "Home");
             }
 
             using (StreamReader reader = new StreamReader(file.OpenReadStream())) //referenced https: //www.geeksforgeeks.org/c-sharp/streamreader-and-streamwriter-in-c-sharp/

@@ -2,7 +2,7 @@
 
 **Author**: McKenna Makran (Nologo) <br>
 **Manager**: Liresh Kaulasar (Nologo) <br>
-**Tech Stack**: C#, LINQ, .NET 10, ASP.NET Razor Pages
+**Tech Stack**: C#, LINQ, .NET 10, ASP.NET Core MVC
 
 
 ## Overview

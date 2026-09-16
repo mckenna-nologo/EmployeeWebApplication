@@ -6,10 +6,16 @@ namespace EmployeeWebApplication.Controllers
 {
     public class SearchController : Controller
     {
+        
+        private EmployeeDataViewModel model = new EmployeeDataViewModel();
+
+        public SearchController()
+        {
+            model.Employees = EmployeeMockData.Employees;
+        }
+
         public IActionResult SearchView()
         {
-            EmployeeDataViewModel model = new EmployeeDataViewModel();
-            model.Employees = EmployeeMockData.Employees;
             model.HasSearched = false;
 
             return View(model);
@@ -26,10 +32,6 @@ namespace EmployeeWebApplication.Controllers
                 )
                 .ToList(); //put the results in a list 
 
-
-            EmployeeDataViewModel model = new EmployeeDataViewModel();
-
-            model.Employees = EmployeeMockData.Employees; //not working
             model.SearchResults = searchResults;
             model.HasSearched = true;
 

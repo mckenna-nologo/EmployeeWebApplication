@@ -5,12 +5,17 @@ using Microsoft.AspNetCore.Mvc;
 namespace EmployeeWebApplication.Controllers
 {
     public class UpdateController : Controller
-    {
-        public IActionResult UpdateView()
+    { 
+
+        private EmployeeDataViewModel model = new EmployeeDataViewModel();
+
+        public UpdateController()
         {
-            EmployeeDataViewModel model = new EmployeeDataViewModel();
             model.Employees = EmployeeMockData.Employees;
 
+        }
+        public IActionResult UpdateView()
+        {
             return View(model);
         }
 
@@ -20,9 +25,6 @@ namespace EmployeeWebApplication.Controllers
             Employee selectedEmployee = EmployeeMockData.Employees
                 .FirstOrDefault(employee => employee.EmployeeId == employeeId);
 
-            EmployeeDataViewModel model = new EmployeeDataViewModel();
-
-            model.Employees = EmployeeMockData.Employees;
 
             if (selectedEmployee != null)
             {
@@ -38,7 +40,6 @@ namespace EmployeeWebApplication.Controllers
         public IActionResult Update(EmployeeDataViewModel model)
         {
             Employee employee = model.SelectedEmployee; //get the selected employee from the model
-
 
             //if there is no selected employee
             if (employee == null)

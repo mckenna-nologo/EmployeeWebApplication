@@ -6,25 +6,26 @@ namespace EmployeeWebApplication.Controllers
 {
     public class DeleteController : Controller
     {
+        private EmployeeDataViewModel model = new EmployeeDataViewModel();
+
+        public DeleteController()
+        {
+            model.Employees = EmployeeMockData.Employees;
+        }
+
         public IActionResult DeleteView()
         {
-            EmployeeDataViewModel model = new EmployeeDataViewModel();
-            model.Employees = EmployeeMockData.Employees;
             return View(model);
         }
 
 
         // find the employee before you delete
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult FindEmployee(int employeeId)
         {
             Employee selectedEmployee =
                 EmployeeMockData.Employees
                 .FirstOrDefault(employee => employee.EmployeeId == employeeId);
-
-            EmployeeDataViewModel model = new EmployeeDataViewModel();
-            model.Employees = EmployeeMockData.Employees;
 
             if (selectedEmployee != null)
             {
@@ -38,7 +39,6 @@ namespace EmployeeWebApplication.Controllers
 
         // delete
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Delete(int employeeId)
         {
             var employee = EmployeeMockData.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);

@@ -8,24 +8,23 @@ namespace EmployeeWebApplication.Controllers
 {
     public class HomeController : Controller
     {
-        //read
+        //solid + interfaces
+
+        private EmployeeDataViewModel model = new EmployeeDataViewModel(); //fields 
+
+        public HomeController() //constructor
+        {
+            model.Employees = EmployeeMockData.Employees;
+        }
+
         public IActionResult Index()
         {
-            EmployeeDataViewModel model = new EmployeeDataViewModel();
-
-            model.Employees = EmployeeMockData.Employees;
-
-            //return View();
             return View(model);
         }
 
         public IActionResult Employees()
         {
-            EmployeeDataViewModel model = new EmployeeDataViewModel();
-            model.Employees = EmployeeMockData.Employees;
-
             return View(model);
-            //return View();
         }
     }
 }

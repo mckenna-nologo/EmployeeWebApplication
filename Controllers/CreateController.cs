@@ -1,4 +1,6 @@
-﻿using EmployeeWebApplication.Mock;
+﻿using EmployeeWebApplication.Helpers;
+using EmployeeWebApplication.Interfaces;
+using EmployeeWebApplication.Mock;
 using EmployeeWebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,6 +8,13 @@ namespace EmployeeWebApplication.Controllers
 {
     public class CreateController : Controller
     {
+        private readonly IEmployeeHelper _employeeHelper;
+
+        public CreateController(IEmployeeHelper employeeHelper)
+        {
+            _employeeHelper = employeeHelper;
+        }
+
         public IActionResult CreateView()
         {
             return View(new Employee());
@@ -20,10 +29,7 @@ namespace EmployeeWebApplication.Controllers
                 return View("CreateView", employee);//keep the information the user entered
             }
 
-            employee.EmployeeId = EmployeeMockData.GetNextId();
-            employee.DateCreated = DateTime.Now;
-
-            EmployeeMockData.Employees.Add(employee);
+            _employeeHelper.Create(employee);
 
             TempData["SuccessMessage"] = "Employee successfully created!";
 

@@ -1,6 +1,9 @@
-﻿namespace EmployeeWebApplication.Interfaces
+﻿using EmployeeWebApplication.Models;
+
+namespace EmployeeWebApplication.Interfaces
 {
-    public class IEmployeeHelper
+    public interface IEmployeeHelper
     {
+        void Create(Employee employee);
     }
 }

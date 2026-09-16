@@ -66,7 +66,7 @@ namespace EmployeeWebApplication.Controllers
                 //return RedirectToAction("Index", "Home");
             }
 
-            using (StreamReader reader = new StreamReader(file.OpenReadStream())) //referenced https: //www.geeksforgeeks.org/c-sharp/streamreader-and-streamwriter-in-c-sharp/
+            using (StreamReader reader = new StreamReader(file.OpenReadStream())) //referenced https: //www.geeksforgeeks.org/c-sharp/streamreader-and-streamwriter-in-c-sharp/ --> error happening here
             {
                 string line;
                 reader.ReadLine();

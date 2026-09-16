@@ -7,12 +7,17 @@ namespace EmployeeWebApplication.Helpers
     public class EmployeeHelper : IEmployeeHelper
     {
 
-        public void Create(Employee employee) 
-        { 
+        public void Create(Employee employee)
+        {
             employee.EmployeeId = EmployeeMockData.GetNextId();
             employee.DateCreated = DateTime.Now;
 
-             EmployeeMockData.Employees.Add(employee);
+            EmployeeMockData.Employees.Add(employee);
+        }
+
+        public void Delete(Employee employee) 
+        {
+            EmployeeMockData.Employees.Remove(employee);                
         }
     }
 }

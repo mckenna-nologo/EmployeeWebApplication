@@ -1,4 +1,5 @@
-﻿using EmployeeWebApplication.Mock;
+﻿using EmployeeWebApplication.Interfaces;
+using EmployeeWebApplication.Mock;
 using EmployeeWebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,9 +8,11 @@ namespace EmployeeWebApplication.Controllers
     public class DeleteController : Controller
     {
         private EmployeeDataViewModel model = new EmployeeDataViewModel();
+        private readonly IEmployeeHelper _employeeHelper;
 
-        public DeleteController()
+        public DeleteController(IEmployeeHelper employeeHelper)
         {
+            _employeeHelper = employeeHelper;
             model.Employees = EmployeeMockData.Employees;
         }
 
@@ -49,7 +52,7 @@ namespace EmployeeWebApplication.Controllers
                 return RedirectToAction("DeleteView");
             }
 
-            EmployeeMockData.Employees.Remove(employee);
+            _employeeHelper.Delete(employee);
 
             TempData["SuccessMessage"] = "Employee successfully deleted!";
             return RedirectToAction("Employees", "Home");

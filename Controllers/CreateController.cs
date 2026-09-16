@@ -8,28 +8,19 @@ namespace EmployeeWebApplication.Controllers
     {
         public IActionResult CreateView()
         {
-            return View();
+            return View(new Employee());
         }
 
         //create employee
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(Employee employee)
         {
-            var fields = new Dictionary<string, string>
-        {
-            { "First name", employee.FirstName },
-            { "Last name", employee.LastName },
-            { "Email", employee.Email },
-            { "Department", employee.Department }
-        };
-
-            foreach (var field in fields) //no field must be empty validation message
+            // Server-side validation using data annotations
+            if (!ModelState.IsValid)
             {
-                if (string.IsNullOrWhiteSpace(field.Value))
-                {
-                    TempData["ErrorMessage"] = field.Key + " is required.";
-                    return RedirectToAction("Index", "Home");
-                }
+                // return the create view with the submitted employee so validation messages show
+                return View("CreateView", employee);
             }
 
             employee.EmployeeId = EmployeeMockData.GetNextId();

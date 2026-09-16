@@ -47,18 +47,20 @@ namespace EmployeeWebApplication.Controllers
         {
             //the updated employee should be in model.SelectedEmployee
             var employee = model?.SelectedEmployee;
-
             if (employee == null)
             {
-                TempData["ErrorMessage"] = "No employee data submitted.";
+                model ??= new EmployeeDataViewModel(); //CIRCLE BACK
+                model.ErrorMessage = "No employee data submitted.";
+                return View("UpdateView", model);
             }
 
-            if (string.IsNullOrWhiteSpace(employee.FirstName) ||
-                string.IsNullOrWhiteSpace(employee.LastName) ||
-                string.IsNullOrWhiteSpace(employee.Email) ||
-                string.IsNullOrWhiteSpace(employee.Department))
+            // validate the nested SelectedEmployee using data annotations
+            // use the same prefix used by the form inputs so validation messages bind to the fields
+            if (!TryValidateModel(employee, "SelectedEmployee"))
             {
-                TempData["ErrorMessage"] = "All fields are required.";
+                // preserve the employee list in the model and return the view so validation messages display
+                model.Employees = EmployeeMockData.Employees;
+                return View("UpdateView", model);
             }
 
             Employee existingEmployee = EmployeeMockData.Employees
@@ -66,7 +68,9 @@ namespace EmployeeWebApplication.Controllers
 
             if (existingEmployee == null)
             {
-                TempData["ErrorMessage"] = $"Employee with ID {employee.EmployeeId} was not found.";
+                model.ErrorMessage = $"Employee with ID {employee.EmployeeId} was not found.";
+                model.Employees = EmployeeMockData.Employees;
+                return View("UpdateView", model);
             }
 
             existingEmployee.FirstName = employee.FirstName;

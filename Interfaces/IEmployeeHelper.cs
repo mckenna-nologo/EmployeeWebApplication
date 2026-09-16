@@ -7,5 +7,13 @@ namespace EmployeeWebApplication.Interfaces
         void Create(Employee employee);
 
         void Delete(Employee employee);
+
+        List<Employee> GetMockData();
+
+        void Search(string name, string department); //circle back
+
+        void Update(Employee model);
+
+        Employee GetEmployeeById(int employeeId);
     }
 }

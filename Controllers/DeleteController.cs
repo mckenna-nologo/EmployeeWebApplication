@@ -13,7 +13,8 @@ namespace EmployeeWebApplication.Controllers
         public DeleteController(IEmployeeHelper employeeHelper)
         {
             _employeeHelper = employeeHelper;
-            model.Employees = EmployeeMockData.Employees;
+
+            model.Employees = _employeeHelper.GetMockData(); //circle back
         }
 
         public IActionResult DeleteView()
@@ -26,9 +27,7 @@ namespace EmployeeWebApplication.Controllers
         [HttpPost]
         public IActionResult FindEmployee(int employeeId)
         {
-            Employee selectedEmployee =
-                EmployeeMockData.Employees
-                .FirstOrDefault(employee => employee.EmployeeId == employeeId);
+            var selectedEmployee = _employeeHelper.GetEmployeeById(employeeId);
 
             if (selectedEmployee != null)
             {
@@ -44,7 +43,7 @@ namespace EmployeeWebApplication.Controllers
         [HttpPost]
         public IActionResult Delete(int employeeId)
         {
-            var employee = EmployeeMockData.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
+            var employee = _employeeHelper.GetEmployeeById(employeeId);
 
             if (employee == null)
             {

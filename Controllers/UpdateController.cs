@@ -56,7 +56,6 @@ namespace EmployeeWebApplication.Controllers
                 return View("UpdateView", model); //circle back, logic?
             }
 
-
             Employee existingEmployee = EmployeeMockData.Employees
                 .FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
 

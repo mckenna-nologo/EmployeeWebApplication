@@ -17,7 +17,27 @@ namespace EmployeeWebApplication.Helpers
 
         public void Delete(Employee employee) 
         {
-            EmployeeMockData.Employees.Remove(employee);                
+            EmployeeMockData.Employees.Remove(employee);
+          
+        }
+        public List<Employee> GetMockData()
+        {
+            return EmployeeMockData.Employees;
+        }
+
+        public void Search(string name, string department)
+        {
+            //what goes here?
+        }
+
+        public void Update(Employee model)
+        {
+             
+        }
+
+        public Employee GetEmployeeById (int employeeId)
+        {
+            return EmployeeMockData.Employees.FirstOrDefault(employee => employee.EmployeeId == employeeId);
         }
     }
 }

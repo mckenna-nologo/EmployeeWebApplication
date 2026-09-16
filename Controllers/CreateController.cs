@@ -11,16 +11,13 @@ namespace EmployeeWebApplication.Controllers
             return View(new Employee());
         }
 
-        //create employee
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Create(Employee employee)
         {
-            // Server-side validation using data annotations
+            //validation check for the employee to see if the model is valid, if not, return to the CreateView with the employee data
             if (!ModelState.IsValid)
             {
-                // return the create view with the submitted employee so validation messages show
-                return View("CreateView", employee);
+                return View("CreateView", employee);//keep the information the user entered
             }
 
             employee.EmployeeId = EmployeeMockData.GetNextId();
@@ -29,8 +26,8 @@ namespace EmployeeWebApplication.Controllers
             EmployeeMockData.Employees.Add(employee);
 
             TempData["SuccessMessage"] = "Employee successfully created!";
-            return RedirectToAction("Employees", "Home");
 
+            return RedirectToAction("Employees", "Home");
         }
     }
 }

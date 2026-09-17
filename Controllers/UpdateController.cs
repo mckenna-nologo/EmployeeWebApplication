@@ -47,7 +47,6 @@ namespace EmployeeWebApplication.Controllers
                 return View("UpdateView", model);
             }
 
-
             //validation check for the selected employee to see if the model is valid, if not, return to the UpdateView with the model and employee list
             if (!TryValidateModel(employee, "SelectedEmployee"))
             {

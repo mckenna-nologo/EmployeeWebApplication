@@ -12,10 +12,9 @@ namespace EmployeeWebApplication.Interfaces
 
         void Search(string name, string department); //circle back
 
-        void Update(Employee model);
+        void Update(Employee model); //circle back
 
         Employee GetEmployeeById(int employeeId);
-
 
     }
 }

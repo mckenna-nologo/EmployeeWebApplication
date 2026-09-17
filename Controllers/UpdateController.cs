@@ -31,7 +31,7 @@ namespace EmployeeWebApplication.Controllers
                 return View("UpdateView", model);
             }
 
-            model.ErrorMessage = "Employee with ID " + employeeId + " was not found.";
+            TempData["ErrorMessage"] = "Employee with ID " + employeeId + " was not found.";
             return View("UpdateView", model);
         }
 
@@ -43,7 +43,7 @@ namespace EmployeeWebApplication.Controllers
             //if there is no selected employee
             if (employee == null)
             {
-                model.ErrorMessage = "No employee data submitted.";
+                TempData["ErrorMessage"] = "No employee data submitted.";
                 return View("UpdateView", model);
             }
 
@@ -59,7 +59,7 @@ namespace EmployeeWebApplication.Controllers
 
             if (existingEmployee == null)
             {
-                model.ErrorMessage = "Employee with ID " + employee.EmployeeId + " was not found.";
+                TempData["ErrorMessage"] = "Employee with ID " + employee.EmployeeId + " was not found.";
                 model.Employees = EmployeeMockData.Employees;
 
                 return View("UpdateView", model);

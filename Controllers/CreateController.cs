@@ -37,7 +37,7 @@ namespace EmployeeWebApplication.Controllers
             var email = (employee.Email ?? string.Empty).Trim();
 
             //check for existing employee
-            var alreadyExists = EmployeeMockData.Employees
+            var alreadyExists = EmployeeMockData.Employees //logic error
                 .Any(tempEmployee => !string.IsNullOrEmpty(email) && //if the email is not null or empty
                 tempEmployee.Email.Equals(email) ||
                 (!string.IsNullOrEmpty(first) && !string.IsNullOrEmpty(last) &&

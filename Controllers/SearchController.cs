@@ -24,7 +24,7 @@ namespace EmployeeWebApplication.Controllers
         [HttpPost]
         public IActionResult Search(string name, string department)
         {
-            var searchName = name?.Trim() ?? string.Empty;
+            var searchName = name?.Trim() ?? string.Empty; //trim whitespaces, if null make it an empty string
             var searchDepartment = department?.Trim() ?? string.Empty;
 
             List<Employee> searchResults = EmployeeMockData.Employees

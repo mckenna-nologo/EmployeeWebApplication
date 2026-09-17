@@ -5,7 +5,7 @@ using EmployeeWebApplication.Models;
 namespace EmployeeWebApplication.Helpers
 {
     public class EmployeeHelper : IEmployeeHelper
-    {
+    { //relating to database only 
 
         public void Create(Employee employee)
         {

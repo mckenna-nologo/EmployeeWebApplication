@@ -15,5 +15,7 @@ namespace EmployeeWebApplication.Interfaces
         void Update(Employee model);
 
         Employee GetEmployeeById(int employeeId);
+
+
     }
 }

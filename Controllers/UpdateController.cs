@@ -1,4 +1,5 @@
-﻿using EmployeeWebApplication.Mock;
+﻿using EmployeeWebApplication.Interfaces;
+using EmployeeWebApplication.Mock;
 using EmployeeWebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,13 +7,13 @@ namespace EmployeeWebApplication.Controllers
 {
     public class UpdateController : Controller
     { 
-
         private EmployeeDataViewModel model = new EmployeeDataViewModel();
+        private readonly IEmployeeHelper _employeeHelper;
 
-        public UpdateController()
+        public UpdateController(IEmployeeHelper employeeHelper)
         {
-            model.Employees = EmployeeMockData.Employees;
-
+            _employeeHelper = employeeHelper;
+            model.Employees = _employeeHelper.GetMockData();
         }
         public IActionResult UpdateView()
         {
@@ -22,9 +23,7 @@ namespace EmployeeWebApplication.Controllers
         [HttpPost]
         public IActionResult FindEmployee(int employeeId)
         {
-            Employee selectedEmployee = EmployeeMockData.Employees
-                .FirstOrDefault(employee => employee.EmployeeId == employeeId);
-
+            Employee selectedEmployee = _employeeHelper.GetEmployeeById(employeeId);
 
             if (selectedEmployee != null)
             {
@@ -53,11 +52,10 @@ namespace EmployeeWebApplication.Controllers
             if (!TryValidateModel(employee, "SelectedEmployee"))
             {
                 model.Employees = EmployeeMockData.Employees;
-                return View("UpdateView", model); //circle back, logic?
+                return View("UpdateView", model); 
             }
 
-            Employee existingEmployee = EmployeeMockData.Employees
-                .FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
+            Employee existingEmployee = _employeeHelper.GetEmployeeById(employee.EmployeeId); //changed
 
 
             if (existingEmployee == null)

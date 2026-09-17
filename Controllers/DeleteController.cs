@@ -13,8 +13,7 @@ namespace EmployeeWebApplication.Controllers
         public DeleteController(IEmployeeHelper employeeHelper)
         {
             _employeeHelper = employeeHelper;
-
-            model.Employees = _employeeHelper.GetMockData(); //circle back
+            model.Employees = _employeeHelper.GetMockData(); //shortcut -> ctrl + f12
         }
 
         public IActionResult DeleteView()
@@ -34,6 +33,7 @@ namespace EmployeeWebApplication.Controllers
                 model.SelectedEmployee = selectedEmployee;
                 return View("DeleteView", model);
             }
+
 
             model.ErrorMessage = "Employee with ID " + employeeId + " was not found.";
             return View("DeleteView", model);

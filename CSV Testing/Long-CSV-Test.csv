@@ -1,4 +1,3 @@
-Employee ID,First Name,Last Name,Email,Department,Date Created
 10,Marcus,Evans,marcusevans@gmail.com,Management,2026-04-12
 11,Natalie,Cooper,nataliecooper@gmail.com,Education,2026-04-18
 12,Adrian,Morris,adrianmorris@gmail.com,Sports,2026-05-02
@@ -24,6 +23,7 @@ Employee ID,First Name,Last Name,Email,Department,Date Created
 32,Martin,Peterson,martinpeterson@gmail.com,Engineering,2026-09-03
 33,Angela,Gray,angelagray@gmail.com,Human Resources,2026-09-04
 34,Raymond,Ramirez,raymondramirez@gmail.com,Sales,2026-09-05
+21,Monica,Cook,monicacook@gmail.com,Human Resources,2026-08-12
 35,Melissa,James,melissajames@gmail.com,Marketing,2026-09-06
 36,Tristan,Watson,tristanwatson@gmail.com,Agriculture,2026-09-07
 37,Audrey,Brooks,audreybrooks@gmail.com,Education,2026-09-08
@@ -32,6 +32,9 @@ Employee ID,First Name,Last Name,Email,Department,Date Created
 40,Marcus,Price,marcusprice@gmail.com,Finance,2026-09-11
 41,Claire,Bennett,clairebennett@gmail.com,IT,2026-09-12
 42,Ryan,Wood,ryanwood@gmail.com,Management,2026-09-13
+13,Leah,Turner,leahturner@gmail.com,Marketing,2026-05-11
+14,Jason,Phillips,jasonphillips@gmail.com,IT,2026-05-19
+15,Naomi,Campbell,naomicampbell@gmail.com,Music,2026-06-03
 43,Stephanie,Barnes,stephaniebarnes@gmail.com,Marketing,2026-09-14
 44,Caleb,Ross,calebross@gmail.com,Engineering,2026-09-15
 45,Danielle,Henderson,daniellehenderson@gmail.com,Human Resources,2026-09-16

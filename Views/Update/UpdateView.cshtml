@@ -6,53 +6,91 @@
 
 <h3>Update Employee</h3>
 
-<p class="text-muted">Enter the ID of the employee you want to change.</p>
+<p>Enter the ID of the employee you want to change.</p>
 
-<div class="update-employees">
-    <form asp-controller="Update" asp-action="FindEmployee" method="post">
-        <label for="update-id">Employee ID:</label>
-        <input class="form-control" type="number" id="update-id" name="employeeId">
+<form asp-controller="Update" asp-action="FindEmployee" method="post">
+    <label>Employee ID:</label>
+    <input type="number" name="employeeId" class="form-control" />
+    
+    <br />
+
+    <button type="submit" class="btn btn-primary">Find Employee</button>
+</form>
+
+<br />
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage)) //set in thecontroller -> if the error message contains text, show it
+{ 
+    <p class="text-danger"> @Model.ErrorMessage </p>
+}
+
+
+@if (Model.SelectedEmployee != null) @*only show update form if the employee was found*@
+{
+    <hr />
+
+    <p>This is the employee we are updating:</p>
+
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.SelectedEmployee.EmployeeId</td>
+                    <td>@Model.SelectedEmployee.FirstName @Model.SelectedEmployee.LastName</td>
+                    <td>@Model.SelectedEmployee.Email</td>
+                    <td>@Model.SelectedEmployee.Department</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>Change the details below:</p>
+
+    <form asp-controller="Update" asp-action="Update" method="post"> 
+
+        <input asp-for="SelectedEmployee.EmployeeId" type="hidden" /> @* keep id*@
+
+        <label>First name:</label>
+        <input asp-for="SelectedEmployee.FirstName" class="form-control" />
+        <span asp-validation-for="SelectedEmployee.FirstName" class="text-danger"></span> @*validation message *@
+
         <br />
-        <button type="submit" class="btn btn-primary">
-            Find Employee
-        </button>
+
+        <label>Last name:</label>
+        <input asp-for="SelectedEmployee.LastName" class="form-control" />
+        <span asp-validation-for="SelectedEmployee.LastName" class="text-danger"></span> 
+
+        <br />
+
+        <label>Email:</label>
+        <input asp-for="SelectedEmployee.Email" class="form-control" />
+        <span asp-validation-for="SelectedEmployee.Email" class="text-danger"></span>
+
+        <br />
+
+        <label>Department:</label>
+        <input asp-for="SelectedEmployee.Department"class="form-control" />
+        <span asp-validation-for="SelectedEmployee.Department" class="text-danger"></span>
+        
+        <br />
+
+        <button type="submit" class="btn btn-primary">Update Employee</button>
     </form>
 
-    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
-    {
-        <div class="text-danger">@Model.ErrorMessage</div>
-    }
+}
 
-    @if (Model?.SelectedEmployee != null)
-    {
-        <hr />
-        <p>This is the current employee we're updating:</p>
-        <p><strong> @Model.SelectedEmployee.EmployeeId - @Model.SelectedEmployee.FirstName @Model.SelectedEmployee.LastName | @Model.SelectedEmployee.Email | @Model.SelectedEmployee.Department</strong></p>
 
-        <p class="text-muted">Fill in the updated details below.</p>
+@section Scripts
+{
+    @*loads the javascritp for the validation message*@
 
-        <form asp-controller="Update" asp-action="Update" method="post">
-            <input asp-for="SelectedEmployee.EmployeeId" type="hidden" />
-
-            <label asp-for="SelectedEmployee.FirstName">First name:</label>
-            <input asp-for="SelectedEmployee.FirstName" class="form-control" />
-            <br />
-
-            <label asp-for="SelectedEmployee.LastName">Last name:</label>
-            <input asp-for="SelectedEmployee.LastName" class="form-control" />
-            <br />
-
-            <label asp-for="SelectedEmployee.Email">Email:</label>
-            <input asp-for="SelectedEmployee.Email" class="form-control" />
-            <br />
-
-            <label asp-for="SelectedEmployee.Department">Department:</label>
-            <input asp-for="SelectedEmployee.Department" class="form-control" />
-            <br />
-
-            <button type="submit" class="btn btn-primary">
-                Update Employee
-            </button>
-        </form>
-    }
-</div>
+    <partial name="_ValidationScriptsPartial" /> @*https: //learn.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-10.0*@
+}

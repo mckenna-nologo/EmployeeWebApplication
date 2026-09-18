@@ -6,34 +6,47 @@ namespace EmployeeWebApplication.Controllers
 {
     public class SearchController : Controller
     {
+        
+        private EmployeeDataViewModel model = new EmployeeDataViewModel();
+
+        public SearchController()
+        {
+            model.Employees = EmployeeMockData.Employees;
+        }
+
         public IActionResult SearchView()
         {
-            EmployeeDataViewModel model = new EmployeeDataViewModel();
-            model.Employees = EmployeeMockData.Employees;
             model.HasSearched = false;
 
             return View(model);
         }
 
-        //search through employee data
         [HttpPost]
         public IActionResult Search(string name, string department)
         {
+            var searchName = name?.Trim() ?? string.Empty; //trim whitespaces, if null make it an empty string
+            var searchDepartment = department?.Trim() ?? string.Empty;
+
             List<Employee> searchResults = EmployeeMockData.Employees
-                .Where(employee => //where a particular employee
-                (string.IsNullOrEmpty(name) || employee.FirstName.Contains(name, StringComparison.OrdinalIgnoreCase)) &&  //the name is either null and the department is entered
-                (string.IsNullOrEmpty(department) || employee.Department.Contains(department, StringComparison.OrdinalIgnoreCase)) //or the department is null and the name is entered
+                .Where(employee =>
+                    (string.IsNullOrEmpty(searchName) ||
+                        employee.FirstName.Contains(searchName, StringComparison.OrdinalIgnoreCase) ||
+                        employee.LastName.Contains(searchName, StringComparison.OrdinalIgnoreCase) ||
+                        ($"{employee.FirstName} {employee.LastName}").Contains(searchName, StringComparison.OrdinalIgnoreCase) ||
+                        ($"{employee.LastName} {employee.FirstName}").Contains(searchName, StringComparison.OrdinalIgnoreCase)
+                    ) &&
+                    (string.IsNullOrEmpty(searchDepartment) || employee.Department.Contains(searchDepartment, StringComparison.OrdinalIgnoreCase))
                 )
-                .ToList(); //put the results in a list 
+                .ToList();
 
-
-            EmployeeDataViewModel model = new EmployeeDataViewModel();
-
-            model.Employees = EmployeeMockData.Employees; //not working
             model.SearchResults = searchResults;
             model.HasSearched = true;
+            
+            if (model.SearchResults.Count == 0)
+            {
+                TempData["ErrorMessage"] = "No employees were found.";
+            }
 
-            // return SearchView with search results
             return View("SearchView", model);
         }
     }

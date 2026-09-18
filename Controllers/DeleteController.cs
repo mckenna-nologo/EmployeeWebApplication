@@ -1,4 +1,5 @@
-﻿using EmployeeWebApplication.Mock;
+﻿using EmployeeWebApplication.Interfaces;
+using EmployeeWebApplication.Mock;
 using EmployeeWebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,25 +7,26 @@ namespace EmployeeWebApplication.Controllers
 {
     public class DeleteController : Controller
     {
+        private EmployeeDataViewModel model = new EmployeeDataViewModel();
+        private readonly IEmployeeHelper _employeeHelper;
+
+        public DeleteController(IEmployeeHelper employeeHelper)
+        {
+            _employeeHelper = employeeHelper;
+            model.Employees = _employeeHelper.GetMockData(); //shortcut -> ctrl + f12
+        }
+
         public IActionResult DeleteView()
         {
-            EmployeeDataViewModel model = new EmployeeDataViewModel();
-            model.Employees = EmployeeMockData.Employees;
             return View(model);
         }
 
 
         // find the employee before you delete
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult FindEmployee(int employeeId)
         {
-            Employee selectedEmployee =
-                EmployeeMockData.Employees
-                .FirstOrDefault(employee => employee.EmployeeId == employeeId);
-
-            EmployeeDataViewModel model = new EmployeeDataViewModel();
-            model.Employees = EmployeeMockData.Employees;
+            var selectedEmployee = _employeeHelper.GetEmployeeById(employeeId);
 
             if (selectedEmployee != null)
             {
@@ -32,16 +34,17 @@ namespace EmployeeWebApplication.Controllers
                 return View("DeleteView", model);
             }
 
-            model.ErrorMessage = "Employee with ID " + employeeId + " was not found.";
+
+            TempData["ErrorMessage"] = "Employee with ID " + employeeId + " was not found.";
+            //model.ErrorMessage
             return View("DeleteView", model);
         }
 
         // delete
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Delete(int employeeId)
         {
-            var employee = EmployeeMockData.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
+            var employee = _employeeHelper.GetEmployeeById(employeeId);
 
             if (employee == null)
             {
@@ -49,7 +52,7 @@ namespace EmployeeWebApplication.Controllers
                 return RedirectToAction("DeleteView");
             }
 
-            EmployeeMockData.Employees.Remove(employee);
+            _employeeHelper.Delete(employee);
 
             TempData["SuccessMessage"] = "Employee successfully deleted!";
             return RedirectToAction("Employees", "Home");

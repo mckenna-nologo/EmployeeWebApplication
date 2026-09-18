@@ -1,9 +1,13 @@
+using EmployeeWebApplication.Helpers;
+using EmployeeWebApplication.Interfaces;
 using EmployeeWebApplication.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IEmployeeHelper, EmployeeHelper>(); //maps interface to helper file
 
 var app = builder.Build();
 

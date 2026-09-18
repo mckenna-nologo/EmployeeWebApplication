@@ -1,35 +1,29 @@
-﻿using EmployeeWebApplication.Mock;
+﻿using EmployeeWebApplication.Interfaces;
+using EmployeeWebApplication.Mock;
 using EmployeeWebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeWebApplication.Controllers
 {
     public class UpdateController : Controller
-    {
+    { 
+        private EmployeeDataViewModel model = new EmployeeDataViewModel();
+        private readonly IEmployeeHelper _employeeHelper;
 
+        public UpdateController(IEmployeeHelper employeeHelper)
+        {
+            _employeeHelper = employeeHelper;
+            model.Employees = _employeeHelper.GetMockData();
+        }
         public IActionResult UpdateView()
         {
-            EmployeeDataViewModel model = new EmployeeDataViewModel();
-            model.Employees = EmployeeMockData.Employees;
-
             return View(model);
         }
 
-        //find the employee before you update
         [HttpPost]
         public IActionResult FindEmployee(int employeeId)
         {
-            //in order to fix the error message "Converting null literal or possible null value to non-nullable type.",
-            //I can add ? to Employee to allow it to be null...but I don';t want it to be null
-
-            //circle back to nullify if needed
-
-            Employee selectedEmployee =
-                EmployeeMockData.Employees
-                .FirstOrDefault(employee => employee.EmployeeId == employeeId);
-
-            EmployeeDataViewModel model = new EmployeeDataViewModel();
-            model.Employees = EmployeeMockData.Employees;
+            Employee selectedEmployee = _employeeHelper.GetEmployeeById(employeeId);
 
             if (selectedEmployee != null)
             {
@@ -37,36 +31,38 @@ namespace EmployeeWebApplication.Controllers
                 return View("UpdateView", model);
             }
 
-            model.ErrorMessage = "Employee with ID " + employeeId + " was not found.";
+            TempData["ErrorMessage"] = "Employee with ID " + employeeId + " was not found.";
             return View("UpdateView", model);
         }
 
-        //update 
         [HttpPost]
         public IActionResult Update(EmployeeDataViewModel model)
         {
-            //the updated employee should be in model.SelectedEmployee
-            var employee = model?.SelectedEmployee;
+            Employee employee = model.SelectedEmployee; //get the selected employee from the model
 
+            //if there is no selected employee
             if (employee == null)
             {
                 TempData["ErrorMessage"] = "No employee data submitted.";
+                return View("UpdateView", model);
             }
 
-            if (string.IsNullOrWhiteSpace(employee.FirstName) ||
-                string.IsNullOrWhiteSpace(employee.LastName) ||
-                string.IsNullOrWhiteSpace(employee.Email) ||
-                string.IsNullOrWhiteSpace(employee.Department))
+            //validation check for the selected employee to see if the model is valid, if not, return to the UpdateView with the model and employee list
+            if (!TryValidateModel(employee, "SelectedEmployee"))
             {
-                TempData["ErrorMessage"] = "All fields are required.";
+                model.Employees = EmployeeMockData.Employees;
+                return View("UpdateView", model); 
             }
 
-            Employee existingEmployee = EmployeeMockData.Employees
-                .FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
+            Employee existingEmployee = _employeeHelper.GetEmployeeById(employee.EmployeeId); //changed
+
 
             if (existingEmployee == null)
             {
-                TempData["ErrorMessage"] = $"Employee with ID {employee.EmployeeId} was not found.";
+                TempData["ErrorMessage"] = "Employee with ID " + employee.EmployeeId + " was not found.";
+                model.Employees = EmployeeMockData.Employees;
+
+                return View("UpdateView", model);
             }
 
             existingEmployee.FirstName = employee.FirstName;
@@ -75,6 +71,7 @@ namespace EmployeeWebApplication.Controllers
             existingEmployee.Department = employee.Department;
 
             TempData["SuccessMessage"] = "Employee successfully updated!";
+
             return RedirectToAction("Employees", "Home");
         }
     }

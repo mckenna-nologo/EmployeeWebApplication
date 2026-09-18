@@ -27,9 +27,29 @@
     {
         <hr />
         <p>Are you sure you want to delete this employee:</p>
-        <p><strong> @Model.SelectedEmployee.EmployeeId - @Model.SelectedEmployee.FirstName @Model.SelectedEmployee.LastName | @Model.SelectedEmployee.Email | @Model.SelectedEmployee.Department</strong></p>
 
-        <form asp-controller="Delete" asp-action="Delete" method="post">
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.SelectedEmployee.EmployeeId</td>
+                        <td>@Model.SelectedEmployee.FirstName @Model.SelectedEmployee.LastName</td>
+                        <td>@Model.SelectedEmployee.Email</td>
+                        <td>@Model.SelectedEmployee.Department</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <form asp-controller="Delete" asp-action="Delete" method="post" onsubmit="return confirm('Are you sure you want to delete this employee?');">
             <input type="hidden" name="employeeId" value="@Model.SelectedEmployee.EmployeeId" />
             <button type="submit" class="btn btn-danger">
                 Delete Employee

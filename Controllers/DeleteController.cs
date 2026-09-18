@@ -35,7 +35,8 @@ namespace EmployeeWebApplication.Controllers
             }
 
 
-            model.ErrorMessage = "Employee with ID " + employeeId + " was not found.";
+            TempData["ErrorMessage"] = "Employee with ID " + employeeId + " was not found.";
+            //model.ErrorMessage
             return View("DeleteView", model);
         }
 

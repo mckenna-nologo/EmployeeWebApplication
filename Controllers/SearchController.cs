@@ -41,6 +41,11 @@ namespace EmployeeWebApplication.Controllers
 
             model.SearchResults = searchResults;
             model.HasSearched = true;
+            
+            if (model.SearchResults.Count == 0)
+            {
+                TempData["ErrorMessage"] = "No employees were found.";
+            }
 
             return View("SearchView", model);
         }

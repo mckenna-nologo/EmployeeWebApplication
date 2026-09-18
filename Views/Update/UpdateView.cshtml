@@ -31,11 +31,26 @@
 
     <p>This is the employee we are updating:</p>
 
-    <p>
-        <strong>
-            @Model.SelectedEmployee.EmployeeId - @Model.SelectedEmployee.FirstName @Model.SelectedEmployee.LastName | @Model.SelectedEmployee.Email | @Model.SelectedEmployee.Department
-        </strong>
-    </p>  
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.SelectedEmployee.EmployeeId</td>
+                    <td>@Model.SelectedEmployee.FirstName @Model.SelectedEmployee.LastName</td>
+                    <td>@Model.SelectedEmployee.Email</td>
+                    <td>@Model.SelectedEmployee.Department</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <p>Change the details below:</p>
 

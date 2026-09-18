@@ -31,20 +31,37 @@
 {
     if (Model.SearchResults.Count == 0)
     {
-        <p class="text-danger">No employees were found.</p>
+        @*here the error message will show, but it's declared in the search controller' *@
+        @*this also makes sure that the table doesn't show at the bottom  *@
     }
     else
     {
         <p>Search results:</p>
 
-        foreach (var employee in Model.SearchResults)
-        {
-            <p>
-                @employee.EmployeeId -
-                @employee.FirstName @employee.LastName -
-                @employee.Email -
-                @employee.Department
-            </p>
-        }
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Date created</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var employee in Model.SearchResults)
+                    {
+                        <tr>
+                            <td>@employee.EmployeeId</td>
+                            <td>@employee.FirstName @employee.LastName</td>
+                            <td>@employee.Email</td>
+                            <td>@employee.Department</td>
+                            <td>@employee.DateCreated.ToString("yyyy-MM-dd")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     }
 }

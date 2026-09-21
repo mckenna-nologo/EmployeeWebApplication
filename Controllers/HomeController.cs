@@ -2,6 +2,7 @@ using EmployeeWebApplication.Mock;
 using EmployeeWebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
+using System.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace EmployeeWebApplication.Controllers
@@ -42,7 +43,8 @@ namespace EmployeeWebApplication.Controllers
 
             }
 
-            return View(employees.ToList());
+            model.Employees = employees.ToList();
+            return View(model);
         }
     }
 }

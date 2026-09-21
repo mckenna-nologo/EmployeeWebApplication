@@ -23,7 +23,7 @@ namespace EmployeeWebApplication.Controllers
             return View(model);
         }
 
-        public IActionResult Employees(string sortOrder)
+        public IActionResult Employees(string sortOrder, string searchString)
         {
             ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "last_name_asc" : "";
             ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "first_name_asc" : "";
@@ -32,6 +32,13 @@ namespace EmployeeWebApplication.Controllers
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             var employees = from emp in model.Employees
                             select emp; 
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                employees = employees.Where(
+                    e=> e.LastName.Contains(searchString) || e.FirstName.Contains(searchString)
+                );
+            }
 
             switch (sortOrder)
             {

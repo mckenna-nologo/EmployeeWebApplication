@@ -1,4 +1,4 @@
-﻿using EmployeeWebApplication.Mock;
+using EmployeeWebApplication.Mock;
 using EmployeeWebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 

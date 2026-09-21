@@ -5,24 +5,48 @@
 
 <h3>Employee Database</h3>
 
-@using (Html.BeginForm())
-{
-    <p>
-        Find by name: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
+@{
+    var sf = (ViewBag.SortField ?? "").ToString(); //use sortfield, but if it is null, use an empty string instead
+    var sd = (ViewBag.SortDir ?? "asc").ToString(); //use sortdir, but if it's null, use ascending --> direction
 }
+
+<div class="mb-3"> @*margin class*@
+    <form asp-action="Employees" method="get" class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label class="visually-hidden" for="sort-field">Sort by</label>
+            <select class="form-select" id="sort-field" name="sortField">
+                <option value="" selected="@(String.IsNullOrEmpty(sf) ? "selected" : null)">ID</option>  @* C# within html () *@
+                <option value="first" selected="@(sf == "first" ? "selected" : null)">First Name</option> 
+                <option value="last" selected="@(sf == "last" ? "selected" : null)">Last Name</option>
+                <option value="email" selected="@(sf == "email" ? "selected" : null)">Email</option>
+                <option value="department" selected="@(sf == "department" ? "selected" : null)">Department</option>
+                <option value="date" selected="@(sf == "date" ? "selected" : null)">Date Created</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <label class="visually-hidden" for="sort-dir">Direction</label>
+            <select class="form-select" id="sort-dir" name="sortDir">
+                <option value="asc" selected="@(sd == "asc" ? "selected" : null)">Ascending</option>
+                <option value="desc" selected="@(sd == "desc" ? "selected" : null)">Descending</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Sort</button>
+            <a asp-action="Employees" class="btn btn-secondary ms-2">Clear</a>
+        </div>
+    </form>
+</div>
 
 <div class="table-responsive">
     <table class="table table-striped align-middle">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>@Html.ActionLink("First Name", "Employees", new { sortOrder = ViewBag.FirstNameSortParm })</th>
-                <th>@Html.ActionLink("Last Name", "Employees", new { sortOrder = ViewBag.LastNameSortParm })</th>
-                <th>@Html.ActionLink("Email", "Employees", new { sortOrder = ViewBag.EmailSortParm })</th>
-                <th>@Html.ActionLink("Department", "Employees", new { sortOrder = ViewBag.DepartmentSortParm })</th>
-                <th>@Html.ActionLink("Date created", "Employees", new { sortOrder = ViewBag.DateSortParm })</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Date created</th>
             </tr>
 
         </thead>

@@ -23,44 +23,43 @@ namespace EmployeeWebApplication.Controllers
             return View(model);
         }
 
-        public IActionResult Employees(string sortOrder, string searchString)
+        public IActionResult Employees(string sortField, string sortDir)
         {
-            ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "last_name_asc" : "";
-            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "first_name_asc" : "";
-            ViewBag.DepartmentSortParm = String.IsNullOrEmpty(sortOrder) ? "department_asc" : "";
-            ViewBag.EmailSortParm = String.IsNullOrEmpty(sortOrder) ? "email_asc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-            var employees = from emp in model.Employees
-                            select emp; 
+            //show the current selection to the view
+            ViewBag.SortField = sortField ?? string.Empty;
+            ViewBag.SortDir = sortDir ?? "asc";
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                employees = employees.Where(
-                    e=> e.LastName.Contains(searchString) || e.FirstName.Contains(searchString)
-                );
-            }
-
-            switch (sortOrder)
-            {
-                case "last_name_asc":
-                    employees = employees.OrderBy(e => e.LastName); break;
-                case "first_name_asc":
-                    employees = employees.OrderBy(e => e.FirstName); break;
-                case "department_asc":
-                    employees = employees.OrderBy(e => e.Department); break;
-                case "email_asc":
-                    employees = employees.OrderBy(e => e.Email); break;
-                case "Date":
-                    employees = employees.OrderBy(e => e.DateCreated); break;
-                case "date_asc":
-                    employees = employees.OrderBy(e => e.DateCreated); break;
-                default:
-                    employees = employees.OrderBy(e => e.EmployeeId); break;
-
-            }
+            var employees = model.Employees.AsQueryable();
+            employees = ApplySorting(employees, sortField, sortDir);
 
             model.Employees = employees.ToList();
             return View(model);
+        }
+
+        private IQueryable<Employee> ApplySorting(IQueryable<Employee> source, string sortField, string sortDir)
+        {
+            var field = (sortField ?? "").ToLowerInvariant();
+            var dir = (sortDir ?? "asc").ToLowerInvariant();
+
+            switch (field)
+            {
+                case "first":
+                case "firstname":
+                    return dir == "desc" ? source.OrderByDescending(e => e.FirstName) : source.OrderBy(e => e.FirstName);
+                case "last":
+                case "lastname":
+                    return dir == "desc" ? source.OrderByDescending(e => e.LastName) : source.OrderBy(e => e.LastName);
+                case "email":
+                    return dir == "desc" ? source.OrderByDescending(e => e.Email) : source.OrderBy(e => e.Email);
+                case "department":
+                case "dept":
+                    return dir == "desc" ? source.OrderByDescending(e => e.Department) : source.OrderBy(e => e.Department);
+                case "date":
+                case "datecreated":
+                    return dir == "desc" ? source.OrderByDescending(e => e.DateCreated) : source.OrderBy(e => e.DateCreated);
+                default:
+                    return dir == "desc" ? source.OrderByDescending(e => e.EmployeeId) : source.OrderBy(e => e.EmployeeId);
+            }
         }
     }
 }

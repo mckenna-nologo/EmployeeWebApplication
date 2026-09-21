@@ -12,7 +12,6 @@ namespace EmployeeWebApplication.Helpers
             employee.EmployeeId = EmployeeMockData.GetNextId();
             employee.DateCreated = DateTime.Now;
 
-            
 
             EmployeeMockData.Employees.Add(employee);
         }

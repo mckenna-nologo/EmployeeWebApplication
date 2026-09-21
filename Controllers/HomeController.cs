@@ -22,9 +22,27 @@ namespace EmployeeWebApplication.Controllers
             return View(model);
         }
 
-        public IActionResult Employees()
+        public IActionResult Employees(string sortOrder)
         {
-            return View(model);
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            var employees = from emp in model.Employees
+                            select emp; 
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    employees = employees.OrderByDescending(e => e.LastName); break;
+                case "Date":
+                    employees = employees.OrderBy(e => e.DateCreated); break;
+                case "date_desc":
+                    employees = employees.OrderByDescending(e => e.DateCreated); break;
+                default:
+                    employees = employees.OrderBy(e => e.EmployeeId); break;
+
+            }
+
+            return View(employees.ToList());
         }
     }
 }

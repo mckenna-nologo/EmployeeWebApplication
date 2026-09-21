@@ -25,19 +25,28 @@ namespace EmployeeWebApplication.Controllers
 
         public IActionResult Employees(string sortOrder)
         {
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "last_name_asc" : "";
+            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "first_name_asc" : "";
+            ViewBag.DepartmentSortParm = String.IsNullOrEmpty(sortOrder) ? "department_asc" : "";
+            ViewBag.EmailSortParm = String.IsNullOrEmpty(sortOrder) ? "email_asc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             var employees = from emp in model.Employees
                             select emp; 
 
             switch (sortOrder)
             {
-                case "name_desc":
-                    employees = employees.OrderByDescending(e => e.LastName); break;
+                case "last_name_asc":
+                    employees = employees.OrderBy(e => e.LastName); break;
+                case "first_name_asc":
+                    employees = employees.OrderBy(e => e.FirstName); break;
+                case "department_asc":
+                    employees = employees.OrderBy(e => e.Department); break;
+                case "email_asc":
+                    employees = employees.OrderBy(e => e.Email); break;
                 case "Date":
                     employees = employees.OrderBy(e => e.DateCreated); break;
-                case "date_desc":
-                    employees = employees.OrderByDescending(e => e.DateCreated); break;
+                case "date_asc":
+                    employees = employees.OrderBy(e => e.DateCreated); break;
                 default:
                     employees = employees.OrderBy(e => e.EmployeeId); break;
 

@@ -10,10 +10,11 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Department</th>
-                <th>Date created</th>
+                <th>@Html.ActionLink("First Name", "Employees", new { sortOrder = ViewBag.FirstNameSortParm })</th>
+                <th>@Html.ActionLink("Last Name", "Employees", new { sortOrder = ViewBag.LastNameSortParm })</th>
+                <th>@Html.ActionLink("Email", "Employees", new { sortOrder = ViewBag.EmailSortParm })</th>
+                <th>@Html.ActionLink("Department", "Employees", new { sortOrder = ViewBag.DepartmentSortParm })</th>
+                <th>@Html.ActionLink("Date created", "Employees", new { sortOrder = ViewBag.DateSortParm })</th>
             </tr>
 
         </thead>
@@ -23,7 +24,8 @@
             {
                 <tr>
                     <td>@employee.EmployeeId</td>
-                    <td>@employee.FirstName @employee.LastName</td>
+                    <td>@employee.FirstName</td>
+                    <td>@employee.LastName</td>
                     <td>@employee.Email</td>
                     <td>@employee.Department</td>
                     <td>@employee.DateCreated.ToString("yyyy-MM-dd")</td>

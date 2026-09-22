@@ -12,6 +12,14 @@
 
 <div class="mb-3"> @*margin class*@
     <form asp-action="Employees" method="get" class="row g-2 align-items-center">
+        
+        @*filter*@
+        <div class="col-auto">
+            <label class="visually-hidden" for="filter">Filter</label>
+            <input class="form-control" type="search" id="filter" name="filter" placeholder="Filter (name, email, department...)" value="@ViewBag.Filter" />
+        </div>
+
+        @*sort fields*@
         <div class="col-auto">
             <label class="visually-hidden" for="sort-field">Sort by</label>
             <select class="form-select" id="sort-field" name="sortField">
@@ -23,6 +31,8 @@
                 <option value="date" selected="@(sf == "date" ? "selected" : null)">Date Created</option>
             </select>
         </div>
+
+        @*sort direction*@
         <div class="col-auto">
             <label class="visually-hidden" for="sort-dir">Direction</label>
             <select class="form-select" id="sort-dir" name="sortDir">
@@ -30,8 +40,10 @@
                 <option value="desc" selected="@(sd == "desc" ? "selected" : null)">Descending</option>
             </select>
         </div>
+
+        @*buttons*@
         <div class="col-auto">
-            <button type="submit" class="btn btn-primary">Sort</button>
+            <button type="submit" class="btn btn-primary">Filter</button>
             <a asp-action="Employees" class="btn btn-secondary ms-2">Clear</a>
         </div>
     </form>

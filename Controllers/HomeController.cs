@@ -22,14 +22,29 @@ namespace EmployeeWebApplication.Controllers
         {
             return View(model);
         }
-
-        public IActionResult Employees(string sortField, string sortDir)
+        public IActionResult Employees(string sortField, string sortDir, string filter)
         {
             //show the current selection to the view
             ViewBag.SortField = sortField ?? string.Empty;
             ViewBag.SortDir = sortDir ?? "asc";
+            ViewBag.Filter = filter ?? string.Empty;
 
             var employees = model.Employees.AsQueryable();
+
+           if (!string.IsNullOrWhiteSpace(filter))
+            {
+                var f = filter.Trim();
+                var fl = f.ToLowerInvariant();
+                employees = employees.Where(e =>
+                    (!string.IsNullOrEmpty(e.FirstName) && e.FirstName.ToLowerInvariant().Contains(fl)) ||
+                    (!string.IsNullOrEmpty(e.LastName) && e.LastName.ToLowerInvariant().Contains(fl)) ||
+                    (!string.IsNullOrEmpty(e.Email) && e.Email.ToLowerInvariant().Contains(fl)) ||
+                    (!string.IsNullOrEmpty(e.Department) && e.Department.ToLowerInvariant().Contains(fl)) ||
+                    ($"{(e.FirstName ?? string.Empty)} {(e.LastName ?? string.Empty)}").ToLowerInvariant().Contains(fl) ||
+                    ($"{(e.LastName ?? string.Empty)} {(e.FirstName ?? string.Empty)}").ToLowerInvariant().Contains(fl)
+                );
+            }
+
             employees = ApplySorting(employees, sortField, sortDir);
 
             model.Employees = employees.ToList();

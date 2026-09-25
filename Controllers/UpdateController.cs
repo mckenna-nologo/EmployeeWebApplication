@@ -54,7 +54,7 @@ namespace EmployeeWebApplication.Controllers
                 return View("UpdateView", model); 
             }
 
-            Employee existingEmployee = _employeeHelper.GetEmployeeById(employee.EmployeeId); //changed
+            Employee existingEmployee = _employeeHelper.GetEmployeeById(employee.EmployeeId); 
 
 
             if (existingEmployee == null)
@@ -69,6 +69,7 @@ namespace EmployeeWebApplication.Controllers
             existingEmployee.LastName = employee.LastName;
             existingEmployee.Email = employee.Email;
             existingEmployee.Department = employee.Department;
+            existingEmployee.IsActive = employee.IsActive;
 
             TempData["SuccessMessage"] = "Employee successfully updated!";
 

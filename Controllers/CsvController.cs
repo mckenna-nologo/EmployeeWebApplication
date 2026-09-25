@@ -69,9 +69,30 @@ namespace EmployeeWebApplication.Controllers
             string email = string.Empty;
             string department = string.Empty;
             string dateStr = string.Empty;
+            bool isActive = true;
 
-            if (data.Count >= 6)
+            // Support multiple CSV formats:
+            // 1) ID,First,Last,Email,Department,Date (exported by app)
+            // 2) ID,First,Last,Email,Status,Department,Date (user CSV with Status column)
+            // 3) First,Last,Email,Department (minimal)
+            if (data.Count >= 7)
             {
+                // assume: id, first, last, email, status, department, date
+                first = data[1]?.Trim() ?? string.Empty;
+                last = data[2]?.Trim() ?? string.Empty;
+                email = data[3]?.Trim() ?? string.Empty;
+                var status = data[4]?.Trim() ?? string.Empty;
+                department = data[5]?.Trim() ?? string.Empty;
+                dateStr = data[6]?.Trim() ?? string.Empty;
+
+                if (!string.IsNullOrEmpty(status))
+                {
+                    isActive = status.Equals("active", StringComparison.OrdinalIgnoreCase);
+                }
+            }
+            else if (data.Count >= 6)
+            {
+                // assume: id, first, last, email, department, date
                 first = data[1]?.Trim() ?? string.Empty;
                 last = data[2]?.Trim() ?? string.Empty;
                 email = data[3]?.Trim() ?? string.Empty;
@@ -80,7 +101,7 @@ namespace EmployeeWebApplication.Controllers
             }
             else if (data.Count >= 4)
             {
-                //im assumig the order here will always be First,Last,Email,Department
+                // assume: first, last, email, department
                 first = data[0]?.Trim() ?? string.Empty;
                 last = data[1]?.Trim() ?? string.Empty;
                 email = data[2]?.Trim() ?? string.Empty;
@@ -116,6 +137,7 @@ namespace EmployeeWebApplication.Controllers
             employee.LastName = last;
             employee.Email = email;
             employee.Department = department;
+            employee.IsActive = isActive;
 
             if (!string.IsNullOrWhiteSpace(dateStr) && DateTime.TryParse(dateStr, out var dt))
             {
@@ -135,7 +157,7 @@ namespace EmployeeWebApplication.Controllers
         {
             StringBuilder csv = new StringBuilder();
 
-            csv.AppendLine("Employee ID,First Name,Last Name,Email,Department,Date Created");
+            csv.AppendLine("Employee ID,First Name,Last Name,Email,Status,Department,Date Created");
 
             EmployeeMockData.Employees
                 .Select(employee =>
@@ -143,6 +165,7 @@ namespace EmployeeWebApplication.Controllers
                     EscapeCsv(employee.FirstName) + "," +
                     EscapeCsv(employee.LastName) + "," +
                     EscapeCsv(employee.Email) + "," +
+                    EscapeCsv(employee.IsActive ? "Active" : "Inactive") + "," +
                     EscapeCsv(employee.Department) + "," +
                     employee.DateCreated.ToString("yyyy-MM-dd")
                 )

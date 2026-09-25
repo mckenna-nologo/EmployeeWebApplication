@@ -27,5 +27,8 @@ namespace EmployeeWebApplication.Models
 
         public DateTime DateCreated { get; set; } //set in contoller
 
+        //Status
+        public bool IsActive { get; set; } = true;
+
     }
 }

@@ -82,6 +82,13 @@
         
         <br />
 
+        <div class="form-check form-switch">
+            <input asp-for="SelectedEmployee.IsActive" class="form-check-input" type="checkbox" />
+            <label asp-for="SelectedEmployee.IsActive" class="form-check-label">Active</label>
+        </div>
+
+        <br />
+
         <button type="submit" class="btn btn-primary">Update Employee</button>
     </form>
 

@@ -1,0 +1,147 @@
+Employee ID,First Name,Last Name,Email,Status,Department,Date Created
+1,Emma,Stone,emmastone@gmail.com,Active,Finance,2026-06-27
+2,Henry,Danger,henrydanger@gmail.com,Inactive,Human Resources,2026-07-23
+3,Bill,Cosby,billcosby@gmail.com,Active,Healthcare,2026-03-13
+4,Michael,Scott,michaelscott@gmail.com,Active,Engineering,2026-02-10
+5,Jessica,Day,jessicaday@gmail.com,Active,Finance,2026-05-03
+6,David,Beckham,davidbeckham@gmail.com,Active,Human Resources,2026-02-07
+7,Joan,Watson,joanwatson@gmail.com,Active,Customer Service,2026-05-24
+8,Peter,Parker,peterparker@gmail.com,Inactive,Human Resources,2026-03-06
+9,Bruce,Wayne,brucewayne@gmail.com,Inactive,Education,2026-05-09
+10,Clark,Kent,clarkkent@gmail.com,Active,Education,2026-08-25
+11,Diana,Prince,dianaprince@gmail.com,Active,Healthcare,2026-08-09
+12,Tony,Stark,tonystark@gmail.com,Inactive,Marketing,2026-05-03
+13,Steve,Rogers,steverogers@gmail.com,Active,Education,2026-02-23
+14,Natasha,Romanoff,natasharomanoff@gmail.com,Active,IT,2026-04-11
+15,Wanda,Maximoff,wandamaximoff@gmail.com,Active,Sales,2026-04-22
+16,Barry,Allen,barryallen@gmail.com,Inactive,Engineering,2026-08-19
+17,Oliver,Queen,oliverqueen@gmail.com,Active,Healthcare,2026-03-23
+18,Arthur,Curry,arthurcurry@gmail.com,Active,Design,2026-05-12
+19,Sherlock,Holmes,sherlockholmes@gmail.com,Active,Customer Service,2026-04-21
+20,John,Watson,johnwatson@gmail.com,Inactive,Engineering,2026-03-31
+21,Hermione,Granger,hermionegranger@gmail.com,Active,Finance,2026-03-05
+22,Harry,Potter,harrypotter@gmail.com,Active,Education,2026-07-03
+23,Ron,Weasley,ronweasley@gmail.com,Active,Security,2026-03-30
+24,Frodo,Baggins,frodobaggins@gmail.com,Active,Operations,2026-03-15
+25,Bilbo,Baggins,bilbobaggins@gmail.com,Inactive,Administration,2026-03-27
+26,Luke,Skywalker,lukeskywalker@gmail.com,Inactive,Culinary,2026-08-16
+27,Leia,Organa,leiaorgana@gmail.com,Inactive,Human Resources,2026-04-19
+28,Han,Solo,hansolo@gmail.com,Inactive,Healthcare,2026-07-05
+29,Peter,Griffin,petergriffin@gmail.com,Active,Engineering,2026-09-11
+30,Stewie,Griffin,stewiegriffin@gmail.com,Active,Customer Service,2026-06-26
+31,Homer,Simpson,homersimpson@gmail.com,Active,Culinary,2026-07-20
+32,Marge,Simpson,margesimpson@gmail.com,Inactive,Marketing,2026-05-13
+33,Bart,Simpson,bartsimpson@gmail.com,Active,Administration,2026-09-08
+34,Lisa,Simpson,lisasimpson@gmail.com,Active,Human Resources,2026-04-08
+35,Mickey,Mouse,mickeymouse@gmail.com,Active,Education,2026-08-13
+36,Donald,Duck,donaldduck@gmail.com,Inactive,Marketing,2026-04-05
+37,Bugs,Bunny,bugsbunny@gmail.com,Active,Design,2026-01-31
+38,Daffy,Duck,daffyduck@gmail.com,Inactive,Human Resources,2026-09-13
+39,Clark,Griswold,clarkgriswold@gmail.com,Inactive,Operations,2026-07-01
+40,Indiana,Jones,indianajones@gmail.com,Inactive,Culinary,2026-08-29
+41,Jack,Sparrow,jacksparrow@gmail.com,Active,Human Resources,2026-03-23
+42,James,Bond,jamesbond@gmail.com,Inactive,Healthcare,2026-07-24
+43,Lara,Croft,laracroft@gmail.com,Inactive,Design,2026-06-13
+44,Katniss,Everdeen,katnisseverdeen@gmail.com,Inactive,Sales,2026-06-13
+45,Ellen,Ripley,ellenripley@gmail.com,Active,Customer Service,2026-03-12
+46,Sarah,Connor,sarahconnor@gmail.com,Active,Education,2026-05-21
+47,Marty,McFly,martymcfly@gmail.com,Active,Culinary,2026-01-27
+48,Doc,Brown,docbrown@gmail.com,Active,Education,2026-06-24
+49,Walter,White,walterwhite@gmail.com,Inactive,Engineering,2026-07-08
+50,Jesse,Pinkman,jessepinkman@gmail.com,Inactive,Operations,2026-01-31
+51,Saul,Goodman,saulgoodman@gmail.com,Inactive,Customer Service,2026-06-16
+52,Jimmy,McGill,jimmymcgill@gmail.com,Active,Administration,2026-03-20
+53,Rachel,Green,rachelgreen@gmail.com,Active,Administration,2026-07-18
+54,Ross,Geller,rossgeller@gmail.com,Inactive,Education,2026-08-29
+55,Monica,Geller,monicageller@gmail.com,Inactive,IT,2026-06-28
+56,Chandler,Bing,chandlerbing@gmail.com,Inactive,Culinary,2026-03-31
+57,Joey,Tribbiani,joeytribbiani@gmail.com,Active,Healthcare,2026-05-11
+58,Phoebe,Buffay,phoebebuffay@gmail.com,Inactive,Customer Service,2026-08-27
+59,Dwight,Schrute,dwightschrute@gmail.com,Active,Customer Service,2026-07-29
+60,Jim,Halpert,jimhalpert@gmail.com,Active,Security,2026-09-05
+61,Pam,Beesly,pambeesly@gmail.com,Inactive,Security,2026-06-24
+62,Stanley,Hudson,stanleyhudson@gmail.com,Active,Culinary,2026-06-27
+63,Angela,Martin,angelamartin@gmail.com,Active,Customer Service,2026-04-20
+64,Kevin,Malone,kevinmalone@gmail.com,Active,Engineering,2026-09-16
+65,Andy,Bernard,andybernard@gmail.com,Inactive,Finance,2026-04-07
+66,Leslie,Knope,leslieknope@gmail.com,Inactive,Design,2026-02-12
+67,Ron,Swanson,ronswanson@gmail.com,Inactive,Human Resources,2026-08-15
+68,April,Ludgate,aprilludgate@gmail.com,Active,Design,2026-01-29
+69,Tom,Haverford,tomhaverford@gmail.com,Active,IT,2026-06-09
+70,Bruce,Banner,brucebanner@gmail.com,Inactive,Security,2026-07-21
+71,Scott,Lang,scottlang@gmail.com,Active,Culinary,2026-02-01
+72,Stephen,Strange,stephenstrange@gmail.com,Inactive,Customer Service,2026-07-02
+73,Carol,Danvers,caroldanvers@gmail.com,Inactive,Customer Service,2026-02-26
+74,Peter,Quill,peterquill@gmail.com,Inactive,Human Resources,2026-08-26
+75,Gamora,Zen,gamorazen@gmail.com,Active,Healthcare,2026-09-09
+76,Logan,Howlett,loganhowlett@gmail.com,Inactive,Administration,2026-04-04
+77,Jean,Grey,jeangrey@gmail.com,Inactive,Legal,2026-06-30
+78,Charles,Xavier,charlesxavier@gmail.com,Inactive,IT,2026-09-02
+79,Erik,Lehnsherr,eriklehnsherr@gmail.com,Active,IT,2026-03-19
+80,Gandalf,Grey,gandalfgrey@gmail.com,Active,Engineering,2026-04-11
+81,Aragorn,Elessar,aragornelessar@gmail.com,Active,Engineering,2026-06-05
+82,Samwise,Gamgee,samwisegamgee@gmail.com,Active,IT,2026-03-12
+83,Legolas,Greenleaf,legolasgreenleaf@gmail.com,Active,Human Resources,2026-07-15
+84,Geralt,Rivia,geraltrivia@gmail.com,Active,Security,2026-02-01
+85,Yennefer,Vengerberg,yennefervengerberg@gmail.com,Active,Customer Service,2026-04-09
+86,Ciri,Fiona,cirifiona@gmail.com,Inactive,Administration,2026-03-16
+87,Arthur,Morgan,arthurmorgan@gmail.com,Active,Customer Service,2026-05-19
+88,John,Marston,johnmarston@gmail.com,Inactive,Human Resources,2026-02-17
+89,Ellie,Williams,elliewilliams@gmail.com,Inactive,Education,2026-08-03
+90,Joel,Miller,joelmiller@gmail.com,Active,IT,2026-04-29
+91,Kratos,GodofWar,kratosgodofwar@gmail.com,Inactive,Sales,2026-02-08
+92,Aloy,Rost,aloyrost@gmail.com,Inactive,Legal,2026-05-03
+93,Nathan,Drake,nathandrake@gmail.com,Active,Administration,2026-08-24
+94,Mario,Mario,mariomario@gmail.com,Active,Finance,2026-07-01
+95,Luigi,Mario,luigimario@gmail.com,Inactive,Education,2026-04-28
+96,Peach,Toadstool,peachtoadstool@gmail.com,Active,Human Resources,2026-08-23
+97,Link,Hyrule,linkhyrule@gmail.com,Active,Customer Service,2026-03-05
+98,Zelda,Hyrule,zeldahyrule@gmail.com,Active,Operations,2026-05-09
+99,Sonic,Hedgehog,sonichedgehog@gmail.com,Inactive,Legal,2026-03-02
+100,Cloud,Strife,cloudstrife@gmail.com,Active,Legal,2026-03-19
+101,Aerith,Gainsborough,aerithgainsborough@gmail.com,Active,Finance,2026-08-09
+102,Sephiroth,OneWingedAngel,sephirothonewingedangel@gmail.com,Active,IT,2026-06-30
+103,Goku,Son,gokuson@gmail.com,Active,Culinary,2026-09-09
+104,Vegeta,Prince,vegetaprince@gmail.com,Inactive,Legal,2026-04-29
+105,Bulma,Briefs,bulmabriefs@gmail.com,Inactive,Design,2026-03-10
+106,Ash,Ketchum,ashketchum@gmail.com,Active,Operations,2026-01-30
+107,Misty,Williams,mistywilliams@gmail.com,Inactive,Marketing,2026-01-15
+108,Brock,Stone,brockstone@gmail.com,Inactive,Marketing,2026-09-09
+109,SpongeBob,SquarePants,spongebobsquarepants@gmail.com,Inactive,Culinary,2026-05-03
+110,Patrick,Star,patrickstar@gmail.com,Inactive,Human Resources,2026-03-04
+111,Squidward,Tentacles,squidwardtentacles@gmail.com,Active,Engineering,2026-09-19
+112,Steven,Universe,stevenuniverse@gmail.com,Active,Healthcare,2026-07-22
+113,Rick,Sanchez,ricksanchez@gmail.com,Active,Finance,2026-04-05
+114,Morty,Smith,mortysmith@gmail.com,Inactive,Customer Service,2026-06-13
+115,Summer,Smith,summersmith@gmail.com,Active,Finance,2026-09-07
+116,Beth,Smith,bethsmith@gmail.com,Active,Security,2026-09-17
+117,Jerry,Smith,jerrysmith@gmail.com,Active,Engineering,2026-03-03
+118,Wednesday,Addams,wednesdayaddams@gmail.com,Active,Operations,2026-02-01
+119,Morticia,Addams,morticiaaddams@gmail.com,Active,Engineering,2026-02-14
+120,Gomez,Addams,gomezaddams@gmail.com,Active,Engineering,2026-06-16
+121,Buffy,Summers,buffysummers@gmail.com,Inactive,Administration,2026-02-04
+122,Angel,Blood,angelblood@gmail.com,Inactive,Design,2026-06-13
+123,Dexter,Morgan,dextermorgan@gmail.com,Active,Administration,2026-03-22
+124,Don,Draper,dondraper@gmail.com,Inactive,Human Resources,2026-07-17
+125,Peggy,Olson,peggyolson@gmail.com,Inactive,Culinary,2026-03-23
+126,Harvey,Specter,harveyspecter@gmail.com,Inactive,Legal,2026-07-05
+127,Mike,Ross,mikeross@gmail.com,Active,Finance,2026-04-05
+128,Donna,Paulsen,donnapaulsen@gmail.com,Active,IT,2026-05-12
+129,Tyrion,Lannister,tyrionlannister@gmail.com,Active,Customer Service,2026-06-01
+130,Jon,Snow,jonsnow@gmail.com,Active,Design,2026-03-23
+131,Arya,Stark,aryastark@gmail.com,Active,Design,2026-04-14
+132,Sansa,Stark,sansastark@gmail.com,Inactive,Marketing,2026-03-18
+133,Daenerys,Targaryen,daenerystargaryen@gmail.com,Inactive,Security,2026-02-24
+134,Jamie,Lannister,jamielannister@gmail.com,Inactive,Engineering,2026-06-03
+135,Cersei,Lannister,cerseilannister@gmail.com,Active,Administration,2026-08-09
+136,Bruce,Wayne,brucewayne2@gmail.com,Inactive,Design,2026-08-12
+137,Emma,Stone,emmastone2@gmail.com,Active,Design,2026-07-03
+138,Peter,Parker,peterparker2@gmail.com,Inactive,IT,2026-02-18
+139,John,Watson,johnwatson2@gmail.com,Active,Healthcare,2026-08-30
+140,Michael,Scott,michaelscott2@gmail.com,Active,Marketing,2026-06-05
+141,Jessica,Day,jessicaday2@gmail.com,Active,Healthcare,2026-03-28
+142,Henry,Danger,henrydanger2@gmail.com,Active,Administration,2026-04-12
+143,Bill,Cosby,billcosby2@gmail.com,Inactive,Customer Service,2026-06-26
+144,Tony,Stark,tonystark2@gmail.com,Inactive,Design,2026-05-20
+145,Steve,Rogers,steverogers2@gmail.com,Active,IT,2026-09-04
+146,Rachel,Green,rachelgreen2@gmail.com,Inactive,Security,2026-06-26

@@ -22,12 +22,13 @@ namespace EmployeeWebApplication.Controllers
         {
             return View(model);
         }
-        public IActionResult Employees(string sortField, string sortDir, string filter)
+        public IActionResult Employees(string sortField, string sortDir, string filter, string statusFilter, int page = 1, int pageSize = 10)
         {
             //show the current selection to the view
             ViewBag.SortField = sortField ?? string.Empty;
             ViewBag.SortDir = sortDir ?? "asc";
             ViewBag.Filter = filter ?? string.Empty;
+            ViewBag.StatusFilter = statusFilter ?? "all";
 
             var employees = model.Employees.AsQueryable();
 
@@ -45,9 +46,34 @@ namespace EmployeeWebApplication.Controllers
                 );
             }
 
+            //status filter
+            if (!string.IsNullOrWhiteSpace(statusFilter))
+            {
+                var sf = statusFilter.Trim().ToLowerInvariant();
+                if (sf == "active")
+                {
+                    employees = employees.Where(e => e.IsActive);
+                }
+                else if (sf == "inactive")
+                {
+                    employees = employees.Where(e => !e.IsActive);
+                }
+            }
+
             employees = ApplySorting(employees, sortField, sortDir);
 
-            model.Employees = employees.ToList();
+            //pagination
+            var totalItems = employees.Count();
+            var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+
+            var paged = employees.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            model.Employees = paged;
+            model.PageNumber = page;
+            model.PageSize = pageSize;
+            model.TotalItems = totalItems;
+            model.TotalPages = totalPages;
+
             return View(model);
         }
 

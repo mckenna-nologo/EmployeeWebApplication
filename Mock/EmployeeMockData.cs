@@ -13,7 +13,8 @@ namespace EmployeeWebApplication.Mock
                 LastName = "Stone",
                 Email = "emmastone@gmail.com",
                 Department = "Finance",
-                DateCreated = new DateTime(2026, 1, 15)
+                DateCreated = new DateTime(2026, 1, 15),
+                IsActive = true
             },
             new Employee
             {
@@ -22,7 +23,8 @@ namespace EmployeeWebApplication.Mock
                 LastName = "Danger",
                 Email = "henrydanger@gmail.com",
                 Department = "IT",
-                DateCreated = new DateTime(2026, 1, 16)
+                DateCreated = new DateTime(2026, 1, 16),
+                IsActive = true
             },
             new Employee
             {
@@ -31,7 +33,8 @@ namespace EmployeeWebApplication.Mock
                 LastName = "Cosby",
                 Email = "billcosby@gmail.com",
                 Department = "Culinary",
-                DateCreated = new DateTime(2026, 1, 17)
+                DateCreated = new DateTime(2026, 1, 17),
+                IsActive = false
             },
             new Employee
             {
@@ -40,7 +43,8 @@ namespace EmployeeWebApplication.Mock
                 LastName = "Jett",
                 Email = "joanjett@gmail.com",
                 Department = "Music",
-                DateCreated = new DateTime(2026, 1, 18)
+                DateCreated = new DateTime(2026, 1, 18),
+                IsActive = true
             },
             new Employee
             {
@@ -49,7 +53,8 @@ namespace EmployeeWebApplication.Mock
                 LastName = "Rose",
                 Email = "axlrose@gmail.com",
                 Department = "Music",
-                DateCreated = new DateTime(2026, 1, 18)
+                DateCreated = new DateTime(2026, 1, 18),
+                IsActive = true
             },
             new Employee
             {
@@ -58,7 +63,8 @@ namespace EmployeeWebApplication.Mock
                 LastName = "Betty",
                 Email = "uglybetty.com",
                 Department = "Hollywood",
-                DateCreated = new DateTime(2026, 3, 7)
+                DateCreated = new DateTime(2026, 3, 7),
+                IsActive = false
             },
             new Employee
             {
@@ -67,7 +73,8 @@ namespace EmployeeWebApplication.Mock
                 LastName = "Jill",
                 Email = "jackjill@gmail.com",
                 Department = "Agriculture",
-                DateCreated = new DateTime(2026, 3, 17)
+                DateCreated = new DateTime(2026, 3, 17),
+                IsActive = true
             },
             new Employee
             {
@@ -76,7 +83,8 @@ namespace EmployeeWebApplication.Mock
                 LastName = "Jillian",
                 Email = "joanjillian@gmail.com",
                 Department = "Music",
-                DateCreated = new DateTime(2026, 4, 9)
+                DateCreated = new DateTime(2026, 4, 9),
+                IsActive = true
             },
             new Employee
             {
@@ -85,7 +93,8 @@ namespace EmployeeWebApplication.Mock
                 LastName = "Go'Lucky",
                 Email = "happygolucky@gmail.com",
                 Department = "Agriculture",
-                DateCreated = new DateTime(2026, 4, 8)
+                DateCreated = new DateTime(2026, 4, 8),
+                IsActive = true
             },
         ];
 
